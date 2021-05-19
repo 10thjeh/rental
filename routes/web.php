@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/admin', [AdminModelController::class,'index'])->name('admin');
 Route::get('/admin/games', [AdminModelController::class,'games'])->name('games');
-Route::get('/admin/gamedetails/{id}', [AdminModelController::class,'gameDetails']);
+Route::get('/admin/gamedetails/{id}', [AdminModelController::class,'gameDetails'])->name('gameDetails');
+Route::post('/admin/submitgamechanges', [AdminModelController::class, 'submitGameChanges']);
 Route::get('/admin/consoles', [AdminModelController::class,'console'])->name('consoles');
 Route::get('/admin/orders', [AdminModelController::class,'orders'])->name('orders');
+Route::get('/admin/configs', [AdminModelController::class,'configs'])->name('configs');

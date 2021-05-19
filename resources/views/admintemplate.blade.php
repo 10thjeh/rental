@@ -24,9 +24,21 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{route('orders')}}">Orders</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{route('configs')}}">Pricing</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Add new...
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Game</a></li>
+                <li><a class="dropdown-item" href="#">Console</a></li>
+              </ul>
+            </li>
           </ul>
           <form class="d-flex">
-            <button class="btn btn-outline-success" type="submit">Log out</button>
+            <button class="btn btn-outline-danger" type="submit">Log out</button>
           </form>
         </div>
       </div>

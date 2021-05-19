@@ -12,6 +12,7 @@
         <th>Qty</th>
         <th>Qty Ready</th>
         <th>Manufacturer</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
         <td>{{$console->qty}}</td>
         <td>{{$console->qtyReady}}</td>
         <td>{{$console->manufacturer}}</td>
+        <td><a href="{{url('admin/consoledetails/'.$console->ConsoleID)}}">Action<a/></td>
       </tr>
       @endforeach
     </tbody>

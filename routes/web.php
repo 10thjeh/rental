@@ -25,10 +25,13 @@ Route::get('/admin', [AdminModelController::class,'index'])->name('admin');
 Route::get('/admin/games', [AdminModelController::class,'games'])->name('games');
 Route::get('/admin/gamedetails/{id}', [AdminModelController::class,'gameDetails'])->name('gameDetails');
 Route::post('/admin/submitgamechanges', [AdminModelController::class, 'submitGameChanges']);
+Route::post('/admin/submitconsolechanges', [AdminModelController::class, 'submitConsoleChanges']);
+Route::post('admin/submitpricingchanges', [AdminModelController::class, 'submitPricingChanges']);
 Route::get('/admin/consoles', [AdminModelController::class,'console'])->name('consoles');
 Route::get('/admin/orders', [AdminModelController::class,'orders'])->name('orders');
+Route::get('/admin/pricing', [AdminModelController::class,'pricing'])->name('pricing');
+Route::get('/admin/consoledetails/{id}', [AdminModelController::class, 'consoleDetails']);
 Route::get('/admin/configs', [AdminModelController::class,'configs'])->name('configs');
 Route::get('/',[HomeController::Class,'index']);
 Route::get('/home',[HomeController::Class,'index']);
 Route::get('/console',[ConsoleController::Class,'index']);
-

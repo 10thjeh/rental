@@ -18,6 +18,28 @@ class AdminModel extends Model
       return $consoles;
     }
 
+    static function getConsoleDetails($id){
+      $consoleDetail = DB::table('console')->where('ConsoleID', $id)->get();
+      return $consoleDetail;
+    }
+
+    static function submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer){
+      DB::beginTransaction();
+      $query = DB::table('console')
+                   ->where('ConsoleID', $idConsole)
+                   ->update([
+                     'NamaConsole' => $namaConsole,
+                     'qty' => $qty,
+                     'manufacturer' => $manufacturer
+                   ]);
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return back()->withInput();
+      }
+      return redirect()->route('consoles');
+    }
+
     static function getGameDetails($id){
       $game = DB::table('game')->where('GameID',$id)->get();
       return $game;
@@ -38,7 +60,7 @@ class AdminModel extends Model
       DB::table('genre')->where('idGame', $gameId)->delete();
       //then iteratively begin to add to the database
       foreach ($genre as $g) {
-        DB::table('genre')->insert(['idGame' => $gameId, 'genreId' => $g]);
+      DB::table('genre')->insert(['idGame' => $gameId, 'genreId' => $g]);
       }
       //now the real shit begin
       DB::beginTransaction();
@@ -53,4 +75,24 @@ class AdminModel extends Model
 
       return redirect()->route('games');
     }
+
+    static function getPricing(){
+      $pricing = DB::table('pricing')->get();
+      return $pricing;
+    }
+
+    static function submitPricingChanges($gamePrice, $consolePrice){
+      DB::beginTransaction();
+      $query = DB::table('pricing')->update(['gamePrice' => $gamePrice, 'consolePrice' => $consolePrice]);
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return back()->withInput();
+      }
+
+      return redirect()->route('pricing');
+    }
+
+
+
 }

@@ -28,7 +28,7 @@
         <div class="mb-3">
           <h3>Genre</h3>
           @foreach($genreList as $genre)
-          <input type="checkbox" id="{{$genre->genreName}}" name="{{$genre->genreName}}" value="{{$genre->genreId}}" <?php //if(in_array($genre->genreName, $gameGenre)) echo "checked" ?>>
+          <input type="checkbox" id="{{$genre->genreName}}" name="{{$genre->genreName}}" value="{{$genre->genreId}}" <?php if(in_array($genre->genreId, $gameGenre)) echo "checked" ?>>
           <label for="{{$genre->genreName}}"> {{$genre->genreName}}</label><br>
           @endforeach
         </div>

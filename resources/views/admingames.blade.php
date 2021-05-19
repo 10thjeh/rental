@@ -11,6 +11,7 @@
         <th>Nama</th>
         <th>Platform</th>
         <th>Qty</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
         <td>{{$game->NamaGame}}</td>
         <td>{{$game->platform}}</td>
         <td>{{$game->qty}}</td>
+        <td><a href={{url('admin/gamedetails/'.$game->GameID)}}>Action</a></td>
       </tr>
       @endforeach
     </tbody>

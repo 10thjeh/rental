@@ -31,15 +31,15 @@ class AdminModelController extends Controller
       // }
       // if(in_array('Fighting', $genreListArray)) dd($genreList);
       $gameGenre = AdminModel::getGameGenres($id);
-      // $gameGenreArray = array('');
-      // // dd($gameGenreArray);
-      // foreach ($gameGenre as $genre) {
-      //   $temp = $genre;
-      //   array_push($gameGenreArray, $temp);
-      // }
+      $gameGenreArray = array('');
+      // dd($gameGenreArray);
+      foreach ($gameGenre as $genre) {
+        $temp = $genre->genreId;
+        array_push($gameGenreArray, $temp);
+      }
       // dd($gameGenreArray);
       // dd($game);
-      return view('admingamedetails', ['game' => $game, 'genreList' => $genreList, 'gameGenre' => $gameGenre]);
+      return view('admingamedetails', ['game' => $game, 'genreList' => $genreList, 'gameGenre' => $gameGenreArray]);
     }
 
     function submitGameChanges(){
@@ -51,12 +51,20 @@ class AdminModelController extends Controller
       $qty = $response['qty'];
       $genre = array_slice($response, 5);
       // dd($genre);
-      AdminModel::submitGameChanges($gameId, $namaGame, $platform, $qty, $genre);
-      return redirect()->route('games');
+      return AdminModel::submitGameChanges($gameId, $namaGame, $platform, $qty, $genre);
+      // return redirect()->route('games');
     }
 
-    function configs(){
+    function pricing(){
+      $pricing = AdminModel::getPricing();
+      return view('adminpricing', ['pricing' => $pricing]);
+    }
 
+    function submitPricingChanges(){
+      $response = request()->post();
+      $gamePrice = $response['gamePrice'];
+      $consolePrice = $response['consolePrice'];
+      return AdminModel::submitPricingChanges($gamePrice, $consolePrice);
     }
 
     function orders(){
@@ -66,5 +74,20 @@ class AdminModelController extends Controller
     function console(){
       $consoles = AdminModel::getConsoles();
       return view('adminconsoles',['consoles'=>$consoles]);
+    }
+
+    function consoleDetails($id){
+      $console = AdminModel::getConsoleDetails($id);
+      return view('adminconsoledetails', ['console' => $console]);
+    }
+
+    function submitConsoleChanges(){
+      $response = request()->post();
+      $idConsole = $response['ConsoleID'];
+      $namaConsole = $response['NamaConsole'];
+      $qty = $response['qty'];
+      $manufacturer = $response['manufacturer'];
+
+      return AdminModel::submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer);
     }
 }

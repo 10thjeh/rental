@@ -25,7 +25,7 @@
               <a class="nav-link active" aria-current="page" href="{{route('orders')}}">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{route('configs')}}">Pricing</a>
+              <a class="nav-link active" aria-current="page" href="{{route('pricing')}}">Pricing</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,6 +43,7 @@
         </div>
       </div>
     </nav>
+    <br>
     {{--content goes here--}}
     @yield('content')
   </body>

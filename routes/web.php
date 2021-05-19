@@ -1,12 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\AdminModelController;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\HomeController;
->>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +19,6 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< Updated upstream
-=======
 
 Route::get('/admin', [AdminModelController::class,'index'])->name('admin');
 Route::get('/admin/games', [AdminModelController::class,'games'])->name('games');
@@ -34,4 +29,3 @@ Route::get('/admin/orders', [AdminModelController::class,'orders'])->name('order
 Route::get('/',[HomeController::Class,'index']);
 Route::get('/home',[HomeController::Class,'index']);
 Route::get('/console',[ConsoleController::Class,'index']);
->>>>>>> Stashed changes

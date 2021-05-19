@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminModelController;
+use App\Http\Controllers\ConsoleController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +26,7 @@ Route::get('/admin/games', [AdminModelController::class,'games'])->name('games')
 Route::get('/admin/gamedetails/{id}', [AdminModelController::class,'gameDetails']);
 Route::get('/admin/consoles', [AdminModelController::class,'console'])->name('consoles');
 Route::get('/admin/orders', [AdminModelController::class,'orders'])->name('orders');
+Route::get('/',[HomeController::Class,'index']);
+Route::get('/home',[HomeController::Class,'index']);
+Route::get('/console',[ConsoleController::Class,'index']);
+

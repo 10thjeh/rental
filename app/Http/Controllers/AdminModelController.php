@@ -90,4 +90,41 @@ class AdminModelController extends Controller
 
       return AdminModel::submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer);
     }
+
+    function addnewgame(){
+      $genreList = AdminModel::getGenres();
+      $platformList = AdminModel::getPlatformList();
+      return view('adminaddnewgame', ['genreList' => $genreList, 'platformList' => $platformList]);
+    }
+
+    function submitnewgame(){
+      $response = request()->post();
+      $namaGame = $response['namaGame'];
+      $platform = $response['platform'];
+      $qty = $response['qty'];
+      $genre = array_slice($response, 4);
+      // dump($response); dump($genre);
+      return AdminModel::submitNewGame($namaGame, $platform, $qty, $genre);
+    }
+
+    function addnewconsole(){
+      return view('adminaddnewconsole');
+    }
+
+    function submitnewconsole(){
+      $response = request()->post();
+      $namaConsole = $response['NamaConsole'];
+      $qty = $response['qty'];
+      $manufacturer = $response['manufacturer'];
+      return AdminModel::submitNewConsole($namaConsole, $qty, $manufacturer);
+    }
+
+    function deletegame($id){
+      return AdminModel::deleteGame($id);
+    }
+
+    function deleteconsole($id){
+      return AdminModel::deleteConsole($id);
+    }
+
 }

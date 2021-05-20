@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class ConsoleController extends Controller
 {
     public function index(){
-        return "Halaman Consol";
+        return view('console');
     }
 }

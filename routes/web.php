@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminModelController;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SignInController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,4 @@ Route::get('/',[HomeController::Class,'index']);
 Route::get('/home',[HomeController::Class,'index']);
 Route::get('/console',[ConsoleController::Class,'index']);
 Route::get('/login',[LoginController::Class,'index']);
+Route::get('/signin',[SignInController::Class,'index']);

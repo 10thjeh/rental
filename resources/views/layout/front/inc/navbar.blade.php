@@ -9,7 +9,8 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('home')}}">Home</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('console')}}">Console</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('home#signup')}}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('login')}}">Sign Up</a></li>
                     </ul>
                 </div>
             </div>

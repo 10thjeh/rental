@@ -14,13 +14,28 @@
             <h5 class="card-title text-center">Register</h5>
             <form class="form-signin">
               <div class="form-label-group">
-                <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
-                <label for="inputUserame">Username</label>
+                <input type="text" id="firstName" class="form-control" placeholder="First Name" required autofocus>
+                <label for="firstName">First Name</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required autofocus>
+                <label for="lastName">Last Name</label>
               </div>
 
               <div class="form-label-group">
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
                 <label for="inputEmail">Email address</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="text" id="alamat" class="form-control" placeholder="Address" required autofocus>
+                <label for="alamat">Address</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="text" id="telepon" class="form-control" placeholder="Phone Number" required autofocus>
+                <label for="telepon">Phone Number</label>
               </div>
               
               <hr>

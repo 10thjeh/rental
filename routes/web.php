@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminModelController;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +42,4 @@ Route::get('/admin/deleteconsole/{id}', [AdminModelController::class, 'deletecon
 Route::get('/',[HomeController::Class,'index']);
 Route::get('/home',[HomeController::Class,'index']);
 Route::get('/console',[ConsoleController::Class,'index']);
+Route::get('/login',[LoginController::Class,'index']);

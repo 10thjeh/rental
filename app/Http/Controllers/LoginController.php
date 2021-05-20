@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ConsoleController extends Controller
+class LoginController extends Controller
 {
     public function index(){
-        return view('console');
+        return view("login");
     }
 }

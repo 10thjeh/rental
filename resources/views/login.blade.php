@@ -12,41 +12,42 @@
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Register</h5>
-            <form class="form-signin">
+            <form class="form-signin" method="post" action="{{url('login/auth')}}">
+              @csrf
               <div class="form-label-group">
-                <input type="text" id="firstName" class="form-control" placeholder="First Name" required autofocus>
+                <input type="text" id="firstName" class="form-control" name="fname" placeholder="First Name" required autofocus>
                 <label for="firstName">First Name</label>
               </div>
 
               <div class="form-label-group">
-                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required autofocus>
+                <input type="text" id="lastName" class="form-control" name="lname" placeholder="Last Name" required autofocus>
                 <label for="lastName">Last Name</label>
               </div>
 
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required>
                 <label for="inputEmail">Email address</label>
               </div>
 
               <div class="form-label-group">
-                <input type="text" id="alamat" class="form-control" placeholder="Address" required autofocus>
+                <input type="text" id="alamat" class="form-control" name="address" placeholder="Address" required autofocus>
                 <label for="alamat">Address</label>
               </div>
 
               <div class="form-label-group">
-                <input type="text" id="telepon" class="form-control" placeholder="Phone Number" required autofocus>
+                <input type="text" id="telepon" class="form-control" name="phone" placeholder="Phone Number" required autofocus>
                 <label for="telepon">Phone Number</label>
               </div>
-              
+
               <hr>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                 <label for="inputPassword">Password</label>
               </div>
-              
+
               <div class="form-label-group">
-                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputConfirmPassword" class="form-control" name="confirmPassword" placeholder="Password" required>
                 <label for="inputConfirmPassword">Confirm password</label>
               </div>
 

@@ -40,8 +40,9 @@ Route::get('/admin/addnewconsole', [AdminModelController::class, 'addnewconsole'
 Route::get('/admin/deletegame/{id}', [AdminModelController::class, 'deletegame']);
 Route::get('/admin/deleteconsole/{id}', [AdminModelController::class, 'deleteconsole']);
 
-Route::get('/',[HomeController::Class,'index']);
+Route::get('/',[HomeController::Class,'index'])->name('home');
 Route::get('/home',[HomeController::Class,'index']);
 Route::get('/console',[ConsoleController::Class,'index']);
 Route::get('/login',[LoginController::Class,'index']);
 Route::get('/signin',[SignInController::Class,'index']);
+Route::post('/login/auth', [LoginController::class, 'register']);

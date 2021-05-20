@@ -1,6 +1,6 @@
 @extends('admintemplate')
 
-@section('title','Game details')
+@section('title','Pricing')
 
 @section('content')
 @foreach($pricing as $price)

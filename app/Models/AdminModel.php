@@ -93,6 +93,85 @@ class AdminModel extends Model
       return redirect()->route('pricing');
     }
 
+    static function getPlatformList(){
+      $platformList = DB::table('console')->get();
+      return $platformList;
+    }
 
+    static function submitNewGame($namaGame, $platform, $qty, $genre){
+      DB::beginTransaction();
+      $queryGame = DB::table('game')
+                   ->insert([
+                     'GameID' => (int) '',
+                     'NamaGame' => $namaGame,
+                     'platform' => $platform,
+                     'qty' => $qty,
+                     'foto' => ''
+                   ]);
+      //Get gameId after inserting
+      $gameIDquery = DB::table('game')
+                    ->where('NamaGame', $namaGame)
+                    ->where('platform', $platform)
+                    ->select('GameID')
+                    ->get();
+      foreach ($gameIDquery as $gq) {
+        $gameID = $gq->GameID;
+      }
+      // dd($gameID);
+      foreach ($genre as $g) {
+        DB::table('genre')->insert(['idGame' => $gameID, 'genreId' => $g]);
+      }
+      DB::commit();
+      if(!$queryGame){
+        DB::rollback();
+        return back()->withInput();
+      }
 
+      return redirect()->route('games');
+    }
+
+    static function submitNewConsole($namaConsole, $qty, $manufacturer){
+      DB::beginTransaction();
+      $query = DB::table('console')
+                   ->insert([
+                     'ConsoleID' => (int) '',
+                     'NamaConsole' => $namaConsole,
+                     'qty' => $qty,
+                     'qtyReady' => $qty,
+                     'manufacturer' => $manufacturer
+                   ]);
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return back()->withInput();
+      }
+
+      return redirect()->route('consoles');
+    }
+
+    static function deleteConsole($id){
+      DB::beginTransaction();
+      $query = DB::table('console')->where('ConsoleID', $id)->delete();
+      // dd($query);
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return back();
+      }
+
+      return redirect()->route('consoles');
+    }
+
+    static function deleteGame($id){
+      DB::beginTransaction();
+      $genreQuery = DB::table('genre')->where('idGame', $id)->delete();
+      $query = DB::table('game')->where('GameID', $id)->delete();
+      DB::commit();
+      if(!$query or !$genreQuery){
+        DB::rollback();
+        return back();
+      }
+
+      return redirect()->route('games');
+    }
 }

@@ -32,8 +32,8 @@
                 Add new...
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Game</a></li>
-                <li><a class="dropdown-item" href="#">Console</a></li>
+                <li><a class="dropdown-item" href="{{route('newgame')}}">Game</a></li>
+                <li><a class="dropdown-item" href="{{route('newconsole')}}">Console</a></li>
               </ul>
             </li>
           </ul>
@@ -44,6 +44,10 @@
       </div>
     </nav>
     <br>
+    <div class="container">
+      <h2>@yield('title')</h2>
+    </div>
+    
     {{--content goes here--}}
     @yield('content')
   </body>

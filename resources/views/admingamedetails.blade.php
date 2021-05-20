@@ -33,7 +33,7 @@
           @endforeach
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-        <a role="button" href="#" class="btn btn-danger">Delete</a>
+        <a role="button" href="{{url('admin/deletegame/'.$g->GameID)}}" class="btn btn-danger">Delete</a>
       </form>
     </div>
     <div class="col">

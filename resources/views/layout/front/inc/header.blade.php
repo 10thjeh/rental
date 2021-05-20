@@ -1,40 +1,28 @@
 <header>
-            <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="https://via.placeholder.com/1900x600" alt="..." />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>First Slide</h3>
-                            <p>This is a description for the first slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="https://via.placeholder.com/1900x600" alt="..." />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>Second Slide</h3>
-                            <p>This is a description for the second slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="https://via.placeholder.com/1900x600" alt="..." />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>Third Slide</h3>
-                            <p>This is a description for the third slide.</p>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+        <img src="img/LogoBaru.png" alt="" class="Logogan">
+       <!-- <h1 class="big-title translate" data-speed="0.1">your one stop console</h1>-->
+        <img src="/img/wii1.png" class="person translate" data-speed="-0.25" alt="">
+        <img src="img/switch1.png" class="mountain1 translate" data-speed="-0.2" alt="">
+        <img src="img/ps2.png" class="mountain2 translate" data-speed="0.4" alt="">
+        <img src="img/xbox3.png" class="mountain3 translate" data-speed="0.3" alt="">
+        <img src="/img/sky1.png" class="sky translate" data-speed="0.5" alt="">
         </header>
+        <section>
+        <div class="shadow"></div>
+
+        <div class="containerz">
+            <div class="content opacity">
+                <h3 class="title">
+                    About
+                    <div class="border"></div>
+                </h3>
+                <p class="text">A platform dedicated to gamers of all kind. Our aim has always been to help a gamer from his/her level as an enthusiast to his/her level as a pro gamer. Start your experience by joining our community.</p>
+            </div>
+
+            <div class="imgContainerz opacity">
+                <img src="img/BaruLogo.png" alt="">
+            </div>
+        </div>
+    </section>
+    <script src="js/jsgann.js"></script>
+    <link rel="stylesheet" href="css/style.css">

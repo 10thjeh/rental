@@ -9,10 +9,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">{{session('firstName')}}</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('home')}}">Home</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('console')}}">Console</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('home#signup')}}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('login')}}">Sign Up</a></li>
+                        @if(session('isLoggedIn') != True)
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/register')}}">Sign Up</a></li>
+                        @endif
+                        @if(session('isLoggedIn') == True)
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/logout')}}">Log Out</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

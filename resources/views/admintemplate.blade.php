@@ -38,7 +38,8 @@
             </li>
           </ul>
           <form class="d-flex">
-            <button class="btn btn-outline-danger" type="submit">Log out</button>
+            <a class="btn btn-outline-danger" href="{{url('/logout')}}" role="button">Log Out</a>
+            <!-- <button class="btn btn-outline-danger" href="{{url('/logout')}}" type="submit">Log out</button> -->
           </form>
         </div>
       </div>
@@ -47,7 +48,7 @@
     <div class="container">
       <h2>@yield('title')</h2>
     </div>
-    
+
     {{--content goes here--}}
     @yield('content')
   </body>

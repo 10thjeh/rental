@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AdminModel;
 use App\Http\Controllers\URL;
+use Session;
 
 //I dont want to actually sanitize admin inputs, why bother doing injections in admin page?
 //Just wreck the sql already dude

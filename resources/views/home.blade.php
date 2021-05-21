@@ -1,8 +1,11 @@
 @extends('layout.front.app')
 @section('content')
 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <section class="projects-section bg-light" id="projects">
-            <div class="container">
+            <div class="container" data-aos="fade-left">
                 <!-- Featured Project Row-->
                 <div class="row align-items-center no-gutters mb-4 mb-lg-5">
                     <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{{asset('front/assets/img/mabars.png')}}" alt="..." /></div>
@@ -17,7 +20,7 @@
                 <div style="margin-bottom:40px; margin-left:auto; margin-right:auto;">
                     <h1> Our Consoles</h1>
                 </div>
-                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <div class="row justify-content-center no-gutters mb-5 mb-lg-0" data-aos="fade-right">
                     <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/demo-image-01.jpg')}}" alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
@@ -32,7 +35,7 @@
                     </div>
                 </div>
                 <!-- Project Two Row-->
-                <div class="row justify-content-center no-gutters">
+                <div class="row justify-content-center no-gutters" data-aos="fade-left">
                     <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/demo-image-02.jpg')}}" alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
@@ -46,8 +49,8 @@
                         </div>
                     </div>
                 </div>
-                                <!-- Project One Row-->
-                                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <!-- Project Three Row-->
+                <div class="row justify-content-center no-gutters mb-5 mb-lg-0" data-aos="fade-right">
                     <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/demo-image-01.jpg')}}" alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
@@ -86,7 +89,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
+                        <div class="card py-4 h-100" data-aos="fade-up-right">
                             <div class="card-body text-center">
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Address</h4>
@@ -96,17 +99,17 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
+                        <div class="card py-4 h-100" data-aos="flip-left">
+                            <div class="card-body text-center" >
                                 <i class="fas fa-envelope text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Email</h4>
                                 <hr class="my-4" />
-                                <div class="small text-black-50"><a href="#!">rent@crusty-crud.com</a></div>
+                                <div class="small text-black-50"><a href="{{url('home')}}">rent@crusty-crud.com</a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
+                        <div class="card py-4 h-100" data-aos="fade-up-left">
                             <div class="card-body text-center">
                                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Phone</h4>
@@ -123,4 +126,8 @@
                 </div>
             </div>
         </section>
+
+<script>
+  AOS.init();
+</script>
 @endsection

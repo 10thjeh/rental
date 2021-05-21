@@ -43,6 +43,8 @@ Route::get('/admin/deleteconsole/{id}', [AdminModelController::class, 'deletecon
 Route::get('/',[HomeController::Class,'index'])->name('home');
 Route::get('/home',[HomeController::Class,'index']);
 Route::get('/console',[ConsoleController::Class,'index']);
-Route::get('/login',[LoginController::Class,'index']);
-Route::get('/signin',[SignInController::Class,'index']);
-Route::post('/login/auth', [LoginController::class, 'register']);
+Route::get('/register',[LoginController::Class,'registerview']);
+Route::get('/login',[LoginController::Class,'loginview']);
+Route::post('/register/auth', [LoginController::class, 'register']);
+Route::post('/login/auth', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);

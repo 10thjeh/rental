@@ -1,1 +1,1 @@
-<footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright &copy; Your Website 2021</div></footer>
+<footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright &copy; CrustyCRUD Rent 2021</div></footer>

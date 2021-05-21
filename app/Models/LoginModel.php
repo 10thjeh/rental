@@ -57,9 +57,8 @@ class LoginModel extends Model
       //First, let get the hashed password
 
       $correctPasswordQuery = DB::table('users')->where('email', $email)->get();
-      $hashedPassword;
-      $role;
-      $userObj;
+      //Not even registered? smh
+      if(count($correctPasswordQuery) <= 0) return redirect()->back()->withErrors(['errors' => 'Invalid credentials!']);
       foreach ($correctPasswordQuery as $p) {
         $hashedPassword = $p->password;
         $role = $p->role;

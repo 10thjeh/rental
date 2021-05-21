@@ -10,7 +10,7 @@ class Auth extends Model
     static function authAdmin(){
       return (session('role')!== "admin");
     }
-    
+
     static function authUser(){
 
     }

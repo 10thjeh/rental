@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class LoginModel extends Model
 {
@@ -13,11 +14,13 @@ class LoginModel extends Model
       //no need to escape the input anymore, the querybuilder is here
       //but lets check some inputs
       //password == confirmPassword?
-      if($password != $confirmPassword) die('password ga sama');// return back()->withInput();
+      if($password != $confirmPassword) return redirect()->back()->withErrors(['errors' => 'Password does not match']);
       //check if number is numeric
-      if(!is_numeric($phone)) die('telpon ga nomer'); //return back()->withInput();
+      if(!is_numeric($phone)) return redirect()->back()->withErrors(['errors' => 'Phone only accepts numeric']);
       //check if email is, email
-      if(!filter_var($email, FILTER_VALIDATE_EMAIL)) die('email gabener'); //return back()->withInput();
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL)) return redirect()->back()->withErrors(['errors' => 'Illegal Email format']);
+      //Check if password length is more than 8
+      if(strlen($password) < 8) return redirect()->back()->withErrors(['errors' => 'Password length need to more or equal than 8']);
       //Laravel provides validation but sudah terlanjur pake ginian
 
       //Hash the password
@@ -43,5 +46,48 @@ class LoginModel extends Model
 
       return redirect()->route('home');
 
+    }
+
+    static function login($email, $password){
+      //Should we worry about sql injection?
+      //No, probably. Just believe to querybuilder
+      //whats the point of querybuilder if that thing doesnt protect sql injection?
+
+      //Checking user in laravel is kinda, something
+      //First, let get the hashed password
+
+      $correctPasswordQuery = DB::table('users')->where('email', $email)->get();
+      $hashedPassword;
+      $role;
+      $userObj;
+      foreach ($correctPasswordQuery as $p) {
+        $hashedPassword = $p->password;
+        $role = $p->role;
+        $userObj = $p;
+      }
+
+      //Then let Hash do the job
+      if(Hash::check($password, $hashedPassword)) {
+        //Set session
+
+        session()->put('isLoggedIn',True);
+        session()->put('userObject', $userObj);
+        session()->put('firstName', $userObj->firstName);
+        session()->put('lastName', $userObj->lastName);
+        session()->put('role', $userObj->role);
+
+        //if admin then redirect to admin page
+        if(strcmp($userObj->role, "admin")) return redirect()->route('admin');
+
+        return redirect()->route('home');
+      }
+
+      return redirect()->back()->withErrors(['errors' => 'Invalid credentials!']);
+
+    }
+
+    static function logout(){
+      session()->flush();
+      return redirect()->route('home');
     }
 }

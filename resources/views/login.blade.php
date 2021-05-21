@@ -1,117 +1,82 @@
-@extends('login.indexLogin')
+@extends('SignIn.indexSignIn')
 @section('content')
 
 
-<body class="masthead">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-xl-9 mx-auto">
-        <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-center">Register</h5>
-            <form class="form-signin" method="post" action="{{url('login/auth')}}">
-              @csrf
-              <div class="form-label-group">
-                <input type="text" id="firstName" class="form-control" name="fname" placeholder="First Name" required autofocus>
-                <label for="firstName">First Name</label>
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">Welcome back!</h3>
+              @if(count($errors) > 0 )
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <ul class="p-0 m-0" style="list-style: none;">
+                  @foreach($errors->all() as $error)
+                  <li>{{$error}}</li>
+                  @endforeach
+                </ul>
               </div>
+              @endif
+              <form method="post" action="{{url('/login/auth')}}">
+                @csrf
+                <div class="form-label-group">
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+                  <label for="inputEmail">Email address</label>
+                </div>
 
-              <div class="form-label-group">
-                <input type="text" id="lastName" class="form-control" name="lname" placeholder="Last Name" required autofocus>
-                <label for="lastName">Last Name</label>
-              </div>
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
 
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required>
-                <label for="inputEmail">Email address</label>
-              </div>
-
-              <div class="form-label-group">
-                <input type="text" id="alamat" class="form-control" name="address" placeholder="Address" required autofocus>
-                <label for="alamat">Address</label>
-              </div>
-
-              <div class="form-label-group">
-                <input type="text" id="telepon" class="form-control" name="phone" placeholder="Phone Number" required autofocus>
-                <label for="telepon">Phone Number</label>
-              </div>
-
-              <hr>
-
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-                <label for="inputPassword">Password</label>
-              </div>
-
-              <div class="form-label-group">
-                <input type="password" id="inputConfirmPassword" class="form-control" name="confirmPassword" placeholder="Password" required>
-                <label for="inputConfirmPassword">Confirm password</label>
-              </div>
-
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-              <a class="d-block text-center mt-2 small" href="{{url('signin')}}">Sign In</a>
-              <!-- <hr class="my-4">
-              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button> -->
-            </form>
+                <div class="custom-control custom-checkbox mb-3">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Remember password</label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                <!-- <div class="text-center">
+                  <a class="small" href="#">Forgot password?</a></div> -->
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</body>
+</div>
 
 <style>
-
 :root {
   --input-padding-x: 1.5rem;
-  --input-padding-y: .75rem;
+  --input-padding-y: 0.75rem;
 }
 
-
-/* body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
-} */
-
-.card-signin {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+.login,
+.image {
+  min-height: 100vh;
 }
 
-.card-signin .card-title {
-  margin-bottom: 2rem;
-  font-weight: 300;
-  font-size: 1.5rem;
-}
-
-.card-signin .card-img-left {
-  width: 45%;
-  /* Link to your background image using in the property below! */
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("{{asset('front/assets/img/bg-masthead.jpg')}}");
+.bg-image {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("{{asset('front/assets/img/VideoStik.gif')}}");
   background-size: cover;
+  background-position: center;
 }
 
-.card-signin .card-body {
-  padding: 2rem;
+.login-heading {
+  font-weight: 300;
 }
 
-.form-signin {
-  width: 100%;
-}
-
-.form-signin .btn {
-  font-size: 80%;
-  border-radius: 5rem;
-  letter-spacing: .1rem;
-  font-weight: bold;
-  padding: 1rem;
-  transition: all 0.2s;
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
 }
 
 .form-label-group {
@@ -119,14 +84,11 @@
   margin-bottom: 1rem;
 }
 
-.form-label-group input {
-  height: auto;
-  border-radius: 2rem;
-}
-
 .form-label-group>input,
 .form-label-group>label {
   padding: var(--input-padding-y) var(--input-padding-x);
+  height: auto;
+  border-radius: 2rem;
 }
 
 .form-label-group>label {
@@ -139,6 +101,8 @@
   /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
+  cursor: text;
+  /* Match the input under the label */
   border: 1px solid transparent;
   border-radius: .25rem;
   transition: all .1s ease-in-out;
@@ -176,14 +140,29 @@
   color: #777;
 }
 
-.btn-google {
-  color: white;
-  background-color: #ea4335;
+/* Fallback for Edge
+-------------------------------------------------- */
+
+@supports (-ms-ime-align: auto) {
+  .form-label-group>label {
+    display: none;
+  }
+  .form-label-group input::-ms-input-placeholder {
+    color: #777;
+  }
 }
 
-.btn-facebook {
-  color: white;
-  background-color: #3b5998;
+/* Fallback for IE
+-------------------------------------------------- */
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+  .form-label-group>label {
+    display: none;
+  }
+  .form-label-group input:-ms-input-placeholder {
+    color: #777;
+  }
 }
 
 </style>

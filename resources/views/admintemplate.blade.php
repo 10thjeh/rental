@@ -24,9 +24,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{route('orders')}}">Orders</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{route('pricing')}}">Pricing</a>
-            </li>
+            </li> -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Add new...
@@ -34,6 +34,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{route('newgame')}}">Game</a></li>
                 <li><a class="dropdown-item" href="{{route('newconsole')}}">Console</a></li>
+                <li><a class="dropdown-item" href="{{route('newgenre')}}">Genre</a></li>
               </ul>
             </li>
           </ul>

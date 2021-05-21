@@ -24,8 +24,9 @@ class AdminModel extends Model
       return $consoleDetail;
     }
 
-    static function submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer, $description, $harga){
+    static function submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer, $description, $harga, $namaGambar){
       DB::beginTransaction();
+      if($namaGambar !== null){
       $query = DB::table('console')
                    ->where('ConsoleID', $idConsole)
                    ->update([
@@ -33,8 +34,21 @@ class AdminModel extends Model
                      'qty' => $qty,
                      'manufacturer' => $manufacturer,
                      'deskripsi' => $description,
-                     'harga' => $harga
+                     'harga' => $harga,
+                     'gambar' => $namaGambar
                    ]);
+      }
+      else{
+        $query = DB::table('console')
+                     ->where('ConsoleID', $idConsole)
+                     ->update([
+                       'NamaConsole' => $namaConsole,
+                       'qty' => $qty,
+                       'manufacturer' => $manufacturer,
+                       'deskripsi' => $description,
+                       'harga' => $harga
+                     ]);
+      }
       DB::commit();
       if(!$query){
         DB::rollback();
@@ -58,7 +72,7 @@ class AdminModel extends Model
       return $genres;
     }
 
-    static function submitGameChanges($gameId, $namaGame, $platform, $qty, $genre){
+    static function submitGameChanges($gameId, $namaGame, $platform, $qty, $genre, $description, $harga, $namaGambar){
       //We need to remove all genre before adding new genre
       DB::table('genre')->where('idGame', $gameId)->delete();
       //then iteratively begin to add to the database
@@ -67,9 +81,29 @@ class AdminModel extends Model
       }
       //now the real shit begin
       DB::beginTransaction();
+      if($namaGambar !== null){
       $query = DB::table('game')
               ->where('GameID', $gameId)
-              ->update(['NamaGame' => $namaGame, 'platform' => $platform, 'qty' => $qty]);
+              ->update([
+                'NamaGame' => $namaGame,
+                'platform' => $platform,
+                'qty' => $qty,
+                'deskripsi' => $description,
+                'harga' => $harga,
+                'gambar' => $namaGambar
+              ]);
+      }
+      else{
+        $query = DB::table('game')
+                ->where('GameID', $gameId)
+                ->update([
+                  'NamaGame' => $namaGame,
+                  'platform' => $platform,
+                  'qty' => $qty,
+                  'deskripsi' => $description,
+                  'harga' => $harga
+                ]);
+      }
       DB::commit();
       if(!$query){
         DB::rollback();
@@ -101,7 +135,7 @@ class AdminModel extends Model
       return $platformList;
     }
 
-    static function submitNewGame($namaGame, $platform, $qty, $genre){
+    static function submitNewGame($namaGame, $platform, $qty, $genre, $description, $harga, $namaGambar){
       DB::beginTransaction();
       $queryGame = DB::table('game')
                    ->insert([
@@ -109,7 +143,9 @@ class AdminModel extends Model
                      'NamaGame' => $namaGame,
                      'platform' => $platform,
                      'qty' => $qty,
-                     'foto' => ''
+                     'deskripsi' => $description,
+                     'harga' => $harga,
+                     'gambar' => $namaGambar
                    ]);
       //Get gameId after inserting
       $gameIDquery = DB::table('game')
@@ -133,7 +169,7 @@ class AdminModel extends Model
       return redirect()->route('games');
     }
 
-    static function submitNewConsole($namaConsole, $qty, $manufacturer){
+    static function submitNewConsole($namaConsole, $qty, $manufacturer, $description, $harga, $namaGambar){
       DB::beginTransaction();
       $query = DB::table('console')
                    ->insert([
@@ -141,7 +177,10 @@ class AdminModel extends Model
                      'NamaConsole' => $namaConsole,
                      'qty' => $qty,
                      'qtyReady' => $qty,
-                     'manufacturer' => $manufacturer
+                     'manufacturer' => $manufacturer,
+                     'deskripsi' => $description,
+                     'harga' => $harga,
+                     'gambar' => $namaGambar
                    ]);
       DB::commit();
       if(!$query){
@@ -177,4 +216,40 @@ class AdminModel extends Model
 
       return redirect()->route('games');
     }
+
+    static function addGenre($genreName){
+      DB::beginTransaction();
+      $query = DB::table('genredetails')
+                   ->insert([
+                     'genreId' => (int)'',
+                     'genreName' => $genreName
+                   ]);
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return back();
+      }
+      return redirect()->route('admin');
+    }
+
+    static function deleteGenre($genreId){
+      DB::beginTransaction();
+      //U cant directly delete this because of the foreign key
+      //Remove all relation first
+      $delQuery = DB::table('genre')
+                      ->where(['genreId' => $genreId])
+                      ->delete();
+
+      $query = DB::table('genredetails')
+                   ->where(['genreId' => $genreId])
+                   ->delete();
+      DB::commit();
+      if(!$query or !$delQuery){
+        DB::rollback();
+        return redirect()->back()->withErrors(['errors' => 'Failed to perform deletion!']);;
+      }
+      return redirect()->route('admin');
+    }
+
+
 }

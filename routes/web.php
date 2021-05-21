@@ -37,6 +37,9 @@ Route::get('/admin/consoledetails/{id}', [AdminModelController::class, 'consoleD
 Route::get('/admin/configs', [AdminModelController::class,'configs'])->name('configs');
 Route::get('/admin/addnewgame', [AdminModelController::class, 'addnewgame'])->name('newgame');
 Route::get('/admin/addnewconsole', [AdminModelController::class, 'addnewconsole'])->name('newconsole');
+Route::get('/admin/addnewgenre', [AdminModelController::class, 'addnewgenre'])->name('newgenre');
+Route::post('/admin/submitnewgenre', [AdminModelController::class, 'addgenre']);
+Route::post('/admin/deletegenre', [AdminModelController::class, 'deletegenre']);
 Route::get('/admin/deletegame/{id}', [AdminModelController::class, 'deletegame']);
 Route::get('/admin/deleteconsole/{id}', [AdminModelController::class, 'deleteconsole']);
 

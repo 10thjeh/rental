@@ -1,9 +1,6 @@
 @extends('layout.front.app')
 @section('content')
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <section class="projects-section bg-light" id="projects">
             <div class="container" data-aos="fade-left">
                 <!-- Featured Project Row-->
@@ -82,7 +79,7 @@
             </div>
         </section> -->
         <!-- Contact-->
-        <section class="contact-section bg-black">
+        <section class="contact-section bg-black" id="contact">
             <div>
             <img style="width:200px; height:75px; margin-bottom: 75px;" src="{{asset('front/assets/img/LogoBaruPutih.png')}}" class="rounded mx-auto d-block" alt="..."> />
             </div>
@@ -127,7 +124,4 @@
             </div>
         </section>
 
-<script>
-  AOS.init();
-</script>
 @endsection

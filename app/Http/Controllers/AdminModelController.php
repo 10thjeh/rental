@@ -7,6 +7,7 @@ use App\Models\AdminModel;
 use App\Models\Auth;
 use App\Http\Controllers\URL;
 use Session;
+use Illuminate\Support\Str;
 
 //I dont want to actually sanitize admin inputs, why bother doing injections in admin page?
 //Just wreck the sql already dude
@@ -47,7 +48,7 @@ class AdminModelController extends Controller
       return view('admingamedetails', ['game' => $game, 'genreList' => $genreList, 'gameGenre' => $gameGenreArray]);
     }
 
-    function submitGameChanges(){
+    function submitGameChanges(Request $request){
       if(Auth::authAdmin()) return redirect()->route('home');
       // dd(request()->post());
       $response = request()->post();
@@ -55,9 +56,23 @@ class AdminModelController extends Controller
       $namaGame = $response['namaGame'];
       $platform = $response['platform'];
       $qty = $response['qty'];
-      $genre = array_slice($response, 5);
-      // dd($genre);
-      return AdminModel::submitGameChanges($gameId, $namaGame, $platform, $qty, $genre);
+      $description = $response['description'];
+      $harga = $response['harga'];
+      $genre = array_slice($response, 7);
+      //Gambar thingy
+      //Validate image
+      $validateImage = $request->validate([
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096'
+      ]);
+      //Create image name
+      $namaGambar = null;
+      if($request->gambar !== null){
+      $namaGambar = Str::random(20).'.'.$request->gambar->extension();
+      //Move n rename
+      $request->gambar->move(public_path('img/game'), $namaGambar);
+      }
+      // dd($request->gambar);
+      return AdminModel::submitGameChanges($gameId, $namaGame, $platform, $qty, $genre, $description, $harga, $namaGambar);
       // return redirect()->route('games');
     }
 
@@ -77,7 +92,7 @@ class AdminModelController extends Controller
 
     function orders(){
       if(Auth::authAdmin()) return redirect()->route('home');
-      echo "orders";
+      return view('admingameorders');
     }
 
     function console(){
@@ -92,7 +107,7 @@ class AdminModelController extends Controller
       return view('adminconsoledetails', ['console' => $console]);
     }
 
-    function submitConsoleChanges(){
+    function submitConsoleChanges(Request $request){
       if(Auth::authAdmin()) return redirect()->route('home');
       $response = request()->post();
       $idConsole = $response['ConsoleID'];
@@ -101,7 +116,18 @@ class AdminModelController extends Controller
       $manufacturer = $response['manufacturer'];
       $description = $response['description'];
       $harga = $response['harga'];
-      return AdminModel::submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer, $description, $harga);
+      //Validate image
+      $validateImage = $request->validate([
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096'
+      ]);
+      //Create image name
+      $namaGambar = null;
+      if($request->gambar !== null){
+      $namaGambar = $idConsole.'.'.$request->gambar->extension();
+      //Move n rename
+      $request->gambar->move(public_path('img/console'), $namaGambar);
+      }
+      return AdminModel::submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer, $description, $harga, $namaGambar);
     }
 
     function addnewgame(){
@@ -111,15 +137,26 @@ class AdminModelController extends Controller
       return view('adminaddnewgame', ['genreList' => $genreList, 'platformList' => $platformList]);
     }
 
-    function submitnewgame(){
+    function submitnewgame(Request $request){
       if(Auth::authAdmin()) return redirect()->route('home');
       $response = request()->post();
       $namaGame = $response['namaGame'];
       $platform = $response['platform'];
       $qty = $response['qty'];
-      $genre = array_slice($response, 4);
-      // dump($response); dump($genre);
-      return AdminModel::submitNewGame($namaGame, $platform, $qty, $genre);
+      $description = $response['description'];
+      $harga = $response['harga'];
+      //Image processing thing
+      $validateImage = $request->validate([
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096'
+      ]);
+      //Create image name
+      $namaGambar = Str::random(20).'.'.$request->gambar->extension();
+      //Move n rename
+      $request->gambar->move(public_path('img/game'), $namaGambar);
+
+      $genre = array_slice($response, 6);
+      // dd($genre);
+      return AdminModel::submitNewGame($namaGame, $platform, $qty, $genre, $description, $harga, $namaGambar);
     }
 
     function addnewconsole(){
@@ -127,7 +164,7 @@ class AdminModelController extends Controller
       return view('adminaddnewconsole');
     }
 
-    function submitnewconsole(){
+    function submitnewconsole(Request $request){
       if(Auth::authAdmin()) return redirect()->route('home');
       $response = request()->post();
       $namaConsole = $response['NamaConsole'];
@@ -135,7 +172,17 @@ class AdminModelController extends Controller
       $manufacturer = $response['manufacturer'];
       $description = $response['description'];
       $harga = $response['harga'];
-      return AdminModel::submitNewConsole($namaConsole, $qty, $manufacturer);
+      //Urusin gambar disini :
+      //Validate image
+      $validateImage = $request->validate([
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096'
+      ]);
+      //Create image name
+      $namaGambar = Str::random(20).'.'.$request->gambar->extension();
+      //Move n rename
+      $request->gambar->move(public_path('img/console'), $namaGambar);
+
+      return AdminModel::submitNewConsole($namaConsole, $qty, $manufacturer, $description, $harga, $namaGambar);
     }
 
     function deletegame($id){
@@ -146,6 +193,24 @@ class AdminModelController extends Controller
     function deleteconsole($id){
       if(Auth::authAdmin()) return redirect()->route('home');
       return AdminModel::deleteConsole($id);
+    }
+
+    function addnewgenre(){
+      if(Auth::authAdmin()) return redirect()->route('home');
+      $genres = AdminModel::getGenres();
+      return view('adminaddnewgenre', ['genres' => $genres]);
+    }
+
+    function addgenre(){
+      if(Auth::authAdmin()) return redirect()->route('home');
+      $genreName = request()->genre;
+      return AdminModel::addGenre($genreName);
+    }
+
+    function deletegenre(){
+      if(Auth::authAdmin()) return redirect()->route('home');
+      $genreId = request()->genre;
+      return AdminModel::deleteGenre($genreId);
     }
 
 }

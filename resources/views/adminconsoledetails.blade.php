@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <form action="{{url('/admin/submitconsolechanges')}}" method="post">
+      <form action="{{url('/admin/submitconsolechanges')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
           <label for="ConsoleID" class="form-label">ID Console</label>
@@ -39,12 +39,17 @@
             <label for="Description">Description</label>
           </div>
         </div>
+        <div class="mb-3">
+          <label for="gambar" class="form-label">Poster</label><br>
+          <input type="file" accept="image/*" name="gambar" id="gambar">
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a role="button" href="{{url('admin/deleteconsole/'.$c->ConsoleID)}}" class="btn btn-danger">Delete</a>
       </form>
     </div>
     <div class="col">
-
+      <h2>Current poster</h2>
+      <img src=" {{ url('img/console/'.$c->gambar) }} " alt="Gambar konsol">
     </div>
   </div>
 
@@ -53,4 +58,7 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
+
+</script>
 @endsection

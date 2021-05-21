@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <title>CrustyCRUD Rent</title>
+        <link rel="icon" type="image/x-icon" href="{{asset('front/assets/img/rentLogo.png')}}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -31,7 +31,7 @@
                     <div class="col-lg-8 mx-auto">
                         <h2 class="text-white mb-4">Our Aim is to Create Happiness</h2>
                         <p class="text-white-50">
-                        A platform dedicated to gamers of all kind. Our aim has always been to help a gamer from his/her level as an enthusiast to his/her level as a pro gamer. Start your experience by joining our community.
+                        CrustyCRUD Rent is a platform dedicated to gamers of all kind. Our aim has always been to help a gamer from his/her level as an enthusiast to his/her level as a pro gamer. Start your experience by joining our community.
                         </p>
                     </div>
                 </div>

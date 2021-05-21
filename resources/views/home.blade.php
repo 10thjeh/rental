@@ -2,7 +2,7 @@
 @section('content')
 
 <section class="projects-section bg-light" id="projects">
-            <div class="container">
+            <div class="container" data-aos="fade-left">
                 <!-- Featured Project Row-->
                 <div class="row align-items-center no-gutters mb-4 mb-lg-5">
                     <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{{asset('front/assets/img/mabars.png')}}" alt="..." /></div>
@@ -17,14 +17,14 @@
                 <div style="margin-bottom:40px; margin-left:auto; margin-right:auto;">
                     <h1> Our Consoles</h1>
                 </div>
-                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-                    <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/demo-image-01.jpg')}}" alt="..." /></div>
+                <div class="row justify-content-center no-gutters mb-5 mb-lg-0" data-aos="fade-right">
+                    <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/ps.png')}}" alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-left">
                                     <h4 class="text-white">Playstation</h4>
-                                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                                    <p style="color:#0c94ff;">Play lightning-fast, immersive and more lifelike with PlayStation 5.With ultra-high speed SSD, ray tracing, frame rates up to 120 fps, and 8K support. </p>
                                     <hr class="d-none d-lg-block mb-0 ml-0" />
                                 </div>
                             </div>
@@ -32,29 +32,29 @@
                     </div>
                 </div>
                 <!-- Project Two Row-->
-                <div class="row justify-content-center no-gutters">
-                    <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/demo-image-02.jpg')}}" alt="..." /></div>
+                <div class="row justify-content-center no-gutters" data-aos="fade-left">
+                    <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/xbok.png')}}" alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-right">
                                     <h4 class="text-white">XBOX</h4>
-                                    <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                                    <p style="color:#59bf59;">Discover the fastest, most powerful Xbox ever with the Xbox Series X. Enjoy 4K gaming at up to 120 frames per second on this next generation video game</p>
                                     <hr class="d-none d-lg-block mb-0 mr-0" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                                <!-- Project One Row-->
-                                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-                    <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/demo-image-01.jpg')}}" alt="..." /></div>
+                <!-- Project Three Row-->
+                <div class="row justify-content-center no-gutters mb-5 mb-lg-0" data-aos="fade-right">
+                    <div class="col-lg-6"><img class="img-fluid" src="{{asset('front/assets/img/nintendo.png')}}" alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-left">
                                     <h4 class="text-white">Nintendo</h4>
-                                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                                   <p style="color:#ff6363;">The Nintendo Switch is a hybrid video game console, consisting of a console unit, a dock, and two Joy-Con controllers</p>
                                     <hr class="d-none d-lg-block mb-0 ml-0" />
                                 </div>
                             </div>
@@ -79,14 +79,14 @@
             </div>
         </section> -->
         <!-- Contact-->
-        <section class="contact-section bg-black">
+        <section class="contact-section bg-black" id="contact">
             <div>
             <img style="width:200px; height:75px; margin-bottom: 75px;" src="{{asset('front/assets/img/LogoBaruPutih.png')}}" class="rounded mx-auto d-block" alt="..."> />
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
+                        <div class="card py-4 h-100" data-aos="fade-up-right">
                             <div class="card-body text-center">
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Address</h4>
@@ -96,17 +96,17 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
+                        <div class="card py-4 h-100" data-aos="flip-left">
+                            <div class="card-body text-center" >
                                 <i class="fas fa-envelope text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Email</h4>
                                 <hr class="my-4" />
-                                <div class="small text-black-50"><a href="#!">rent@crusty-crud.com</a></div>
+                                <div class="small text-black-50"><a href="{{url('home')}}">rent@crusty-crud.com</a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
+                        <div class="card py-4 h-100" data-aos="fade-up-left">
                             <div class="card-body text-center">
                                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Phone</h4>
@@ -123,4 +123,5 @@
                 </div>
             </div>
         </section>
+
 @endsection

@@ -9,7 +9,7 @@
       <div class="login d-flex align-items-center py-5">
         <div class="container">
           <div class="row">
-            <div class="col-md-9 col-lg-8 mx-auto">
+            <div class="col-md-9 col-lg-8 mx-auto" data-aos="fade-left">
               <h3 class="login-heading mb-4">Welcome back!</h3>
               @if(count($errors) > 0 )
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -63,7 +63,7 @@
 }
 
 .bg-image {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("{{asset('front/assets/img/VideoStik.gif')}}");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("{{asset('front/assets/img/stickFinal.gif')}}");
   background-size: cover;
   background-position: center;
 }

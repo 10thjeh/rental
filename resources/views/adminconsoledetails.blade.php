@@ -29,6 +29,16 @@
             <option value="Nintendo" <?php if($c->manufacturer == "Nintendo") echo "selected"; ?>>Nintendo</option>
           </select>
         </div>
+        <div class="mb-3">
+          <label for="gamePrice" class="form-label">Harga</label>
+          <input type="number" min="0" class="form-control" name="harga" id="gamePrice" value="{{$c->harga}}">
+        </div>
+        <div class="mb-3">
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="" name="description" id="Description" style="height: 100px" value="">{{$c->deskripsi}}</textarea>
+            <label for="Description">Description</label>
+          </div>
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a role="button" href="{{url('admin/deleteconsole/'.$c->ConsoleID)}}" class="btn btn-danger">Delete</a>
       </form>

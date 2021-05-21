@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Auth extends Model
 {
     static function authAdmin(){
-      if(session('role')!== "admin"){
-        redirect()->route('home');
-      }
+      return (session('role')!== "admin");
     }
 
     static function authUser(){

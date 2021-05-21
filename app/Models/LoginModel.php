@@ -76,7 +76,7 @@ class LoginModel extends Model
         session()->put('role', $userObj->role);
 
         //if admin then redirect to admin page
-        if(strcmp($userObj->role, "admin")) return redirect()->route('admin');
+        if(strcmp($userObj->role, "admin") == 0) return redirect()->route('admin');
 
         return redirect()->route('home');
       }

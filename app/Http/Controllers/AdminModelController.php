@@ -99,8 +99,9 @@ class AdminModelController extends Controller
       $namaConsole = $response['NamaConsole'];
       $qty = $response['qty'];
       $manufacturer = $response['manufacturer'];
-
-      return AdminModel::submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer);
+      $description = $response['description'];
+      $harga = $response['harga'];
+      return AdminModel::submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer, $description, $harga);
     }
 
     function addnewgame(){
@@ -132,6 +133,8 @@ class AdminModelController extends Controller
       $namaConsole = $response['NamaConsole'];
       $qty = $response['qty'];
       $manufacturer = $response['manufacturer'];
+      $description = $response['description'];
+      $harga = $response['harga'];
       return AdminModel::submitNewConsole($namaConsole, $qty, $manufacturer);
     }
 

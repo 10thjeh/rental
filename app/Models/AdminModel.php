@@ -24,14 +24,16 @@ class AdminModel extends Model
       return $consoleDetail;
     }
 
-    static function submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer){
+    static function submitConsoleChanges($idConsole, $namaConsole, $qty, $manufacturer, $description, $harga){
       DB::beginTransaction();
       $query = DB::table('console')
                    ->where('ConsoleID', $idConsole)
                    ->update([
                      'NamaConsole' => $namaConsole,
                      'qty' => $qty,
-                     'manufacturer' => $manufacturer
+                     'manufacturer' => $manufacturer,
+                     'deskripsi' => $description,
+                     'harga' => $harga
                    ]);
       DB::commit();
       if(!$query){

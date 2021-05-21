@@ -31,11 +31,11 @@
         </div>
         <div class="mb-3">
           <label for="gamePrice" class="form-label">Harga</label>
-          <input type="number" min="0" class="form-control" name="gamePrice" id="gamePrice" value="{{$c->harga}}">
+          <input type="number" min="0" class="form-control" name="harga" id="gamePrice" value="{{$c->harga}}">
         </div>
         <div class="mb-3">
           <div class="form-floating">
-            <textarea class="form-control" placeholder="" name="description" id="Description" style="height: 100px"></textarea>
+            <textarea class="form-control" placeholder="" name="description" id="Description" style="height: 100px" value="">{{$c->deskripsi}}</textarea>
             <label for="Description">Description</label>
           </div>
         </div>

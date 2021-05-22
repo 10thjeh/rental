@@ -33,4 +33,13 @@ class DataFetch extends Model
       return $query;
     }
 
+    static function getGamesByGenre($genreId){
+      $query = DB::table('genre')
+                   ->join('game', 'genre.idGame', '=', 'game.GameID')
+                   ->select('game.*')
+                   ->where('genre.idGenre', $genreId)
+                   ->get();
+      return $query;
+    }
+    
 }

@@ -9,6 +9,7 @@ use App\Models\DataFetch;
 class GameController extends Controller
 {
     public function index(){
-        return "jancok";
+        $games = DataFetch::getGames();
+        return view('game',['games' => $games]);
     }
 }

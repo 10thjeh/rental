@@ -5,11 +5,11 @@
 <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <h1 class="my-4">Shop Name</h1>
+                    <h1 class="my-4">Console</h1>
                     <div class="list-group">
-                        <a class="list-group-item" href="#!">Category 1</a>
-                        <a class="list-group-item" href="#!">Category 2</a>
-                        <a class="list-group-item" href="#!">Category 3</a>
+                        <a class="list-group-item" href="#!">Playstation</a>
+                        <a class="list-group-item" href="#!">XBOX</a>
+                        <a class="list-group-item" href="#!">Nintendo</a>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -20,7 +20,7 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active"><img class="d-block img-fluid" src="https://via.placeholder.com/900x350" alt="First slide" /></div>
+                            <div class="carousel-item active"><img class="d-block img-fluid" src="{{asset('front/assets/img/psc.png')}}" alt="First slide" /></div>
                             <div class="carousel-item"><img class="d-block img-fluid" src="https://via.placeholder.com/900x350" alt="Second slide" /></div>
                             <div class="carousel-item"><img class="d-block img-fluid" src="https://via.placeholder.com/900x350" alt="Third slide" /></div>
                         </div>

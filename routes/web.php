@@ -51,3 +51,4 @@ Route::get('/login',[LoginController::Class,'loginview']);
 Route::post('/register/auth', [LoginController::class, 'register']);
 Route::post('/login/auth', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('console/sony', [ConsoleController::class, 'category']);

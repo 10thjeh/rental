@@ -14,7 +14,7 @@ class ConsoleController extends Controller
         return view('console',['consoles' => $consoles]);
     }
 
-    public function category($manufacturer){
+    function category($manufacturer){
         $consoles = DataFetch::getConsoleByManufacturer($manufacturer);
         return view('console',['consoles' => $consoles]);
     }

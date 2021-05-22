@@ -7,9 +7,9 @@
                 <div class="col-lg-3">
                     <h1 class="my-4">SHOP LIST</h1>
                     <div class="list-group">
-                        <a class="list-group-item" href="{{url('console/sony')}}">Playstation</a>
-                        <a class="list-group-item" href="#!">Xbox</a>
-                        <a class="list-group-item" href="#!">Nintendo</a>
+                        <a class="list-group-item" href="{{url('console/sony')}}">Sony</a>
+                        <a class="list-group-item" href="{{url('console/microsoft')}}">Microsoft</a>
+                        <a class="list-group-item" href="{{url('console/nintendo')}}">Nintendo</a>
                     </div>
                 </div>
                 <div class="col-lg-9">

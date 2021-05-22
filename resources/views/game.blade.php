@@ -8,10 +8,13 @@
             <div class="col-lg-3">
                 <h1 class="my-4">SHOP LIST</h1>
                 <div class="list-group">
-                <a class="list-group-item" href="{{url('console')}}">All Category</a>
-                    <a class="list-group-item" href="{{url('console/sony#list')}}">Sony</a>
-                    <a class="list-group-item" href="{{url('console/microsoft#list')}}">Microsoft</a>
-                    <a class="list-group-item" href="{{url('console/nintendo#list')}}">Nintendo</a>
+                    <a class="list-group-item" href="{{url('game#list')}}">All Genre</a>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Other Genre</button>
+                    <div class="dropdown-menu">
+                        <a class="list-group-item" href="{{url('game/2#list')}}">Single Player</a>
+                        <a class="list-group-item" href="{{url('console/microsoft#list')}}">Microsoft</a>
+                        <a class="list-group-item" href="{{url('console/nintendo#list')}}">Nintendo</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-9">

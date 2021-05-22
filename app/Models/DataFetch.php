@@ -14,7 +14,7 @@ class DataFetch extends Model
     }
 
     static function getGames(){
-      $query = DB::table('games')->get();
+      $query = DB::table('game')->get();
       return $query;
     }
 

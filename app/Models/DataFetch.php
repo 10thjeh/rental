@@ -37,7 +37,7 @@ class DataFetch extends Model
       $query = DB::table('genre')
                    ->join('game', 'genre.idGame', '=', 'game.GameID')
                    ->select('game.*')
-                   ->where('genre.idGenre', $genreId)
+                   ->where('genreId', $genreId)
                    ->get();
       return $query;
     }

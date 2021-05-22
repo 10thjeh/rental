@@ -3,7 +3,7 @@
 
 
 <body class="masthead">
-  <div class="container" data-aos="fade-up" data-aos-anchor-placement="center-center">
+  <div class="container" >
     <div class="row">
       <div class="col-lg-10 col-xl-9 mx-auto">
         <div class="card card-signin flex-row my-5">

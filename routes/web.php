@@ -54,3 +54,4 @@ Route::post('/login/auth', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('console/{manufacturer}', [ConsoleController::class, 'category']);
 Route::get('/game', [GameController::class, 'index']);
+Route::get('/game/{gameid}', [GameController::class, 'genre']);

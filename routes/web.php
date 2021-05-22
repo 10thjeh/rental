@@ -6,6 +6,7 @@ use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignInController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,4 @@ Route::post('/register/auth', [LoginController::class, 'register']);
 Route::post('/login/auth', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('console/{manufacturer}', [ConsoleController::class, 'category']);
+Route::get('/game', [GameController::class, 'index']);

@@ -24,13 +24,12 @@ class DataFetch extends Model
     }
 
     static function getConsoleByManufacturer($manufacturer){
+      // if($manufacturer = '') return DB::table('console')->get();
       $legitManufacturer = ['sony', 'microsoft', 'nintendo'];
-      if(!in_array($manufacturer, $legitManufacturer)) return redirect()->route('home');
-
+      if(!in_array($manufacturer, $legitManufacturer)) return DB::table('console')->get();
       $query = DB::table('console')
                    ->where('manufacturer', $manufacturer)
                    ->get();
-
       return $query;
     }
 

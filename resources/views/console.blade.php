@@ -47,7 +47,10 @@
                                         <h5>$24.99</h5>
                                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
                                     </div>
-                                    <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">★ ★ ★ ★ ☆</small>
+                                        <a class="btn btn-primary hold" href="{{url('/game')}}">Success</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -72,6 +75,26 @@ body {
         opacity: 1;
      }
 }
+</style>
+<style>
+.btn {
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Green */
+.hold {
+  color: white;
+}
+
+.hold:hover {
+  background-color: #04AA6D;
+  color: black;
+}
+
 </style>
 
 @endsection

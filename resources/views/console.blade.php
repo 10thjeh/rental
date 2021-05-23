@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="container" id="list">
+<div class="container" id="list" data-aos="fade-left">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">★ ★ ★ ★ ☆</small>
-                                        <a class="btn btn-primary hold" href="{{url('/game')}}">Success</a>
+                                        <a class="btn btn-primary rent" href="{{url('/game')}}">Rent</a>
                                     </div>
                                 </div>
                             </div>
@@ -86,13 +86,13 @@ body {
 }
 
 /* Green */
-.hold {
+.rent {
   color: white;
 }
 
-.hold:hover {
+.rent:hover {
   background-color: #04AA6D;
-  color: black;
+  color: white;
 }
 
 </style>

@@ -14,8 +14,8 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">{{session('firstName')}}</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('home')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('console')}}">Console</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('game')}}">Games</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('console#list')}}">Console</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('game#list')}}">Games</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('home#contact')}}">Contact</a></li>
                         @if(session('isLoggedIn') != True)
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/register')}}">Sign Up</a></li>

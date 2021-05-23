@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="container" id="list">
+<div class="container" id="list" data-aos="fade-left">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">

@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">★ ★ ★ ★ ☆</small>
-                                        <button class="btn btn-primary hold" href="#!">Success</button>
+                                        <a class="btn btn-primary hold" href="{{url('/game')}}">Success</a>
                                     </div>
                                 </div>
                             </div>

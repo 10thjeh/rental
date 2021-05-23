@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>CrustyCRUD Rent</title>
-        <link rel="icon" type="image/x-icon" href="{{asset('front/assets/img/rentLogo.png')}}" />
+        <link rel="icon" type="image/x-icon" href="{{asset('front/assets/img/rentLogo1.png')}}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->

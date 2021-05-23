@@ -39,7 +39,7 @@
 
                     @foreach($consoles as $console)
 
-                            <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="flip-left">
                                 <div class="card h-100">
                                     <a href="#!"><img class="card-img-top" src="<?php echo ($console->gambar !== '')?url('img/console/'.$console->gambar):"https://via.placeholder.com/700x400"; ?>" alt="..." /></a>
                                     <div class="card-body">

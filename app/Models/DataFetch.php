@@ -19,7 +19,7 @@ class DataFetch extends Model
     }
 
     static function getGenres(){
-      $query = DB::table('genredetails')->get();
+      $query = DB::table('genredetails')->orderBy('genreName', 'asc')->get();
       return $query;
     }
 
@@ -41,5 +41,5 @@ class DataFetch extends Model
                    ->get();
       return $query;
     }
-    
+
 }

@@ -36,12 +36,12 @@
                     </a>
                 </div>
                 <div class="row">
-                    
+
                     @foreach($consoles as $console)
-                        
+
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
-                                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
+                                    <a href="#!"><img class="card-img-top" src="<?php echo ($console->gambar !== '')?url('img/console/'.$console->gambar):"https://via.placeholder.com/700x400"; ?>" alt="..." /></a>
                                     <div class="card-body">
                                         <h4 class="card-title"><a href="#!">{{$console->NamaConsole}}</a></h4>
                                         <h5>$24.99</h5>
@@ -50,7 +50,7 @@
                                     <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>
                                 </div>
                             </div>
-                        
+
                     @endforeach
                 </div>
             </div>
@@ -63,7 +63,7 @@ body {
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
-  
+
 @keyframes fadeInAnimation {
     0% {
         opacity: 0;

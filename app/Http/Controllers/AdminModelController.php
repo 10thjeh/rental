@@ -15,19 +15,19 @@ use Illuminate\Support\Str;
 class AdminModelController extends Controller
 {
     function index(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       return view('adminindex');
     }
 
     function games(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $games = AdminModel::getGames();
       // dump($games);
       return view('admingames',['games'=>$games]);
     }
 
     function gameDetails($id){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $game = AdminModel::getGameDetails($id);
       $genreList = AdminModel::getGenres();
       // $genreListArray = array('');
@@ -49,7 +49,7 @@ class AdminModelController extends Controller
     }
 
     function submitGameChanges(Request $request){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       // dd(request()->post());
       $response = request()->post();
       $gameId = $response['IdGame'];
@@ -77,13 +77,13 @@ class AdminModelController extends Controller
     }
 
     function pricing(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $pricing = AdminModel::getPricing();
       return view('adminpricing', ['pricing' => $pricing]);
     }
 
     function submitPricingChanges(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $response = request()->post();
       $gamePrice = $response['gamePrice'];
       $consolePrice = $response['consolePrice'];
@@ -91,24 +91,24 @@ class AdminModelController extends Controller
     }
 
     function orders(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       return view('admingameorders');
     }
 
     function console(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $consoles = AdminModel::getConsoles();
       return view('adminconsoles',['consoles'=>$consoles]);
     }
 
     function consoleDetails($id){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $console = AdminModel::getConsoleDetails($id);
       return view('adminconsoledetails', ['console' => $console]);
     }
 
     function submitConsoleChanges(Request $request){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $response = request()->post();
       $idConsole = $response['ConsoleID'];
       $namaConsole = $response['NamaConsole'];
@@ -131,14 +131,14 @@ class AdminModelController extends Controller
     }
 
     function addnewgame(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $genreList = AdminModel::getGenres();
       $platformList = AdminModel::getPlatformList();
       return view('adminaddnewgame', ['genreList' => $genreList, 'platformList' => $platformList]);
     }
 
     function submitnewgame(Request $request){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $response = request()->post();
       $namaGame = $response['namaGame'];
       $platform = $response['platform'];
@@ -160,12 +160,12 @@ class AdminModelController extends Controller
     }
 
     function addnewconsole(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       return view('adminaddnewconsole');
     }
 
     function submitnewconsole(Request $request){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $response = request()->post();
       $namaConsole = $response['NamaConsole'];
       $qty = $response['qty'];
@@ -186,29 +186,29 @@ class AdminModelController extends Controller
     }
 
     function deletegame($id){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       return AdminModel::deleteGame($id);
     }
 
     function deleteconsole($id){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       return AdminModel::deleteConsole($id);
     }
 
     function addnewgenre(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $genres = AdminModel::getGenres();
       return view('adminaddnewgenre', ['genres' => $genres]);
     }
 
     function addgenre(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $genreName = request()->genre;
       return AdminModel::addGenre($genreName);
     }
 
     function deletegenre(){
-      if(Auth::authAdmin()) return redirect()->route('home');
+      if(!Auth::authAdmin()) return redirect()->route('home');
       $genreId = request()->genre;
       return AdminModel::deleteGenre($genreId);
     }

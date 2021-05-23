@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Auth extends Model
 {
     static function authAdmin(){
-      return (session('role')!== "admin");
+      return (session('role') == "admin");
     }
 
-    static function authUser(){
-
+    static function isLoggedIn(){
+      return (session('isLoggedIn'));
     }
 
 }

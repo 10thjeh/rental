@@ -73,6 +73,7 @@ class LoginModel extends Model
         session()->put('userObject', $userObj);
         session()->put('firstName', $userObj->firstName);
         session()->put('lastName', $userObj->lastName);
+        session()->put('email', $userObj->email);
         session()->put('role', $userObj->role);
 
         //if admin then redirect to admin page

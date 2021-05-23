@@ -10,11 +10,13 @@ class GameController extends Controller
 {
     public function index(){
         $games = DataFetch::getGames();
-        return view('game',['games' => $games]);
+        $genres = DataFetch::getGenres();
+        return view('game',['games' => $games, 'genres' => $genres]);
     }
 
     function genre($gameid){
         $games = DataFetch::getGamesByGenre($gameid);
-        return view('game',['games' => $games]);
+        $genres = DataFetch::getGenres();
+        return view('game',['games' => $games, 'genres' => $genres]);
     }
 }

@@ -8,12 +8,12 @@
             <div class="col-lg-3">
                 <h1 class="my-4">SHOP LIST</h1>
                 <div class="list-group">
-                    <a class="list-group-item" href="{{url('game#list')}}">All Genre</a>
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Other Genre</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genres</button>
                     <div class="dropdown-menu">
-                        <a class="list-group-item" href="{{url('game/2#list')}}">Single Player</a>
-                        <a class="list-group-item" href="{{url('console/microsoft#list')}}">Microsoft</a>
-                        <a class="list-group-item" href="{{url('console/nintendo#list')}}">Nintendo</a>
+                        <a class="list-group-item" href="{{url('game')}}">All Genre</a>
+                      @foreach($genres as $genre)
+                        <a class="list-group-item" href="{{url('game/'.$genre->genreId)}}">{{$genre->genreName}}</a>
+                      @endforeach
                     </div>
                 </div>
             </div>
@@ -39,12 +39,12 @@
                     </a>
                 </div>
                 <div class="row">
-                    
+
                     @foreach($games as $game)
-                        
+
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
-                                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
+                                    <a href="#!"><img class="card-img-top" src="<?php echo ($game->gambar !== '')?url('img/game/'.$game->gambar):"https://via.placeholder.com/700x400"; ?>" alt="..." /></a>
                                     <div class="card-body">
                                         <h4 class="card-title"><a href="#!">{{$game->NamaGame}}</a></h4>
                                         <br>
@@ -56,7 +56,7 @@
                                     <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>
                                 </div>
                             </div>
-                        
+
                     @endforeach
                 </div>
             </div>
@@ -69,7 +69,7 @@ body {
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
-  
+
 @keyframes fadeInAnimation {
     0% {
         opacity: 0;

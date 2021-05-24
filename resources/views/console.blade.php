@@ -1,6 +1,18 @@
 @extends('console.indexConsole')
 @section('content')
 
+@if(count($errors) > 0 )
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <ul class="p-0 m-0" style="list-style: none;">
+    @foreach($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
 
 <div class="container" id="list" data-aos="fade-left">
     <div class="container">
@@ -49,7 +61,20 @@
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">★ ★ ★ ★ ☆</small>
-                                        <a class="btn btn-primary rent" href="{{url('/game')}}">Rent</a>
+                                        <form class="card-footer" action="{{url('/console/addtocart')}}" method="post">
+                                          @csrf
+                                          <input type="text" name="consoleId" value="{{$console->ConsoleID}}" hidden>
+                                          <select class="form-select" aria-label="Default select example" id="manufacturer" name="hari">
+                                            <option value="1">1 Day</option>
+                                            <option value="2">2 Days</option>
+                                            <option value="3">3 Days</option>
+                                            <option value="4">4 Days</option>
+                                            <option value="5">5 Days</option>
+                                            <option value="6">6 Days</option>
+                                            <option value="7">7 Days</option>
+                                          </select>
+                                          <button type="submit" class="btn btn-primary">Rent</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

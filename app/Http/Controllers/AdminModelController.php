@@ -89,10 +89,37 @@ class AdminModelController extends Controller
       $consolePrice = $response['consolePrice'];
       return AdminModel::submitPricingChanges($gamePrice, $consolePrice);
     }
-
-    function orders(){
+    //TODO :: Orders
+    function gameship(){
       if(!Auth::authAdmin()) return redirect()->route('home');
-      return view('admingameorders');
+      $ships = AdminModel::getGameShipping();
+      return view('admingameshiporders', ['ships' => $ships]);
+    }
+
+    function gameshipapprove($id){
+      if(!Auth::authAdmin()) return redirect()->route('home');
+      return AdminModel::gameShipApprove($id);
+    }
+
+    function gamereturn(){
+        if(!Auth::authAdmin()) return redirect()->route('home');
+        return view('admingamereturnorders');
+    }
+
+    function consoleship(){
+      if(!Auth::authAdmin()) return redirect()->route('home');
+      $ships = AdminModel::getConsoleShipping();
+      return view('adminconsoleshiporders', ['ships' => $ships]);
+    }
+
+    function consoleshipapprove($id){
+      if(!Auth::authAdmin()) return redirect()->route('home');
+      return AdminModel::consoleShipApprove($id);
+    }
+
+    function consolereturn(){
+        if(!Auth::authAdmin()) return redirect()->route('home');
+        return view('adminconsolereturnorders');
     }
 
     function console(){

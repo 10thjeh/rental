@@ -1,6 +1,6 @@
 @extends('admintemplate')
 
-@section('title','Game Order List')
+@section('title','Console : Return Approval')
 
 @section('content')
 <div class="container">

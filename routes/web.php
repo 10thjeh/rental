@@ -32,7 +32,12 @@ Route::post('/admin/submitpricingchanges', [AdminModelController::class, 'submit
 Route::post('/admin/submitnewgame', [AdminModelController::class, 'submitnewgame']);
 Route::post('/admin/submitnewconsole', [AdminModelController::class, 'submitnewconsole']);
 Route::get('/admin/consoles', [AdminModelController::class,'console'])->name('consoles');
-Route::get('/admin/orders', [AdminModelController::class,'orders'])->name('orders');
+Route::get('/admin/orders/game/ship', [AdminModelController::class,'gameship']);
+Route::get('/admin/orders/game/return', [AdminModelController::class, 'gamereturn']);
+Route::get('/admin/orders/game/ship/approve/{id}', [AdminModelController::class, 'gameshipapprove']);
+Route::get('/admin/orders/console/ship/approve/{id}', [AdminModelController::class, 'consoleshipapprove']);
+Route::get('/admin/orders/console/ship', [AdminModelController::class,'consoleship']);
+Route::get('/admin/orders/console/return', [AdminModelController::class, 'consolereturn']);
 Route::get('/admin/pricing', [AdminModelController::class,'pricing'])->name('pricing');
 Route::get('/admin/consoledetails/{id}', [AdminModelController::class, 'consoleDetails']);
 Route::get('/admin/configs', [AdminModelController::class,'configs'])->name('configs');
@@ -56,3 +61,4 @@ Route::get('console/{manufacturer}', [ConsoleController::class, 'category']);
 Route::get('/game', [GameController::class, 'index']);
 Route::get('/game/{gameid}', [GameController::class, 'genre']);
 Route::post('/game/addtocart', [GameController::class, 'addtocart']);
+Route::post('/console/addtocart', [ConsoleController::class, 'addtocart']);

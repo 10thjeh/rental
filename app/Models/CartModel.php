@@ -29,7 +29,6 @@ class CartModel extends Model
     if($stockReady <= 0) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : No item are ready at the moment']);
 
     //Get harga
-
     $hargaQ = DB::table('game')
                   ->where('GameID', $gameId)
                   ->get();
@@ -41,6 +40,14 @@ class CartModel extends Model
     if($harga == null) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : Unknown GameID']);
 
     $harga = $harga * $hari;
+
+    //Reducing qty
+    $stockReady = $stockReady - 1;
+
+    DB::table('game')
+        ->where('GameID', $gameId)
+        ->update(['qtyReady' => $stockReady]);
+
     //All set, lets get today date
 
     $todayDate = date("Y-m-d");
@@ -67,7 +74,74 @@ class CartModel extends Model
     return redirect()->back();
   }
 
-  static function addConsoleToCart($consoleId, $userEmail){
+  static function addConsoleToCart($consoleId, $userEmail, $hari){
+    //Check if user already ordered game
+    $checkOrder = DB::table('consoleorder')
+                      ->where('email', $userEmail)
+                      ->where('consoleId', $consoleId)
+                      ->count();
+    if($checkOrder > 0) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : you already rented this game']);
+
+    //Check if stock is ready
+    $stockReadyQ = DB::table('console')
+                      ->where('ConsoleID', $consoleId)
+                      ->get();
+
+    $stockReady = null;
+    foreach ($stockReadyQ as $s) {
+      $stockReady = $s->qtyReady;
+    }
+    if($stockReady == null) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : Unknown GameID']);
+    if($stockReady <= 0) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : No item are ready at the moment']);
+
+    //Get harga
+    $hargaQ = DB::table('console')
+                  ->where('ConsoleID', $consoleId)
+                  ->get();
+
+    $harga = null;
+    foreach ($hargaQ as $h) {
+      $harga = $h->harga;
+    }
+    if($harga == null) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : Unknown GameID']);
+
+    $harga = $harga * $hari;
+
+    //Reducing qty
+    $stockReady = $stockReady - 1;
+
+    DB::table('console')
+        ->where('ConsoleID', $consoleId)
+        ->update(['qtyReady' => $stockReady]);
+
+    //All set, lets get today date
+
+    $todayDate = date("Y-m-d");
+    $endDate = date("Y-m-d", strtotime($hari.' day'));
+
+    DB::beginTransaction();
+    $query = DB::table('consoleorder')
+             ->insert([
+               'orderId' => (int) '',
+               'email' => $userEmail,
+               'consoleId' => $consoleId,
+               'harga' => $harga,
+               'hari' => $hari,
+               'startDate' => $todayDate,
+               'endDate' => $endDate,
+               'status' => 'Sedang dikirim'
+             ]);
+    DB::commit();
+    if(!$query){
+      DB::rollback();
+      return redirect()->back()->withErrors(['errors' => 'Cant add to cart : unknown error']);
+    }
+
+    return redirect()->back();
+
+
 
   }
+
+
 }

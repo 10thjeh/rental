@@ -21,8 +21,16 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{route('games')}}">Games</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{route('orders')}}">Orders</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Orders
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{url('/admin/orders/game/ship')}}">Game : Shipping approval</a></li>
+                <li><a class="dropdown-item" href="{{url('/admin/orders/game/return')}}">Game : Return approval</a></li>
+                <li><a class="dropdown-item" href="{{url('/admin/orders/console/ship')}}">Console : Shipping approval</a></li>
+                <li><a class="dropdown-item" href="{{url('/admin/orders/console/return')}}">Console : Return approval</a></li>
+              </ul>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{route('pricing')}}">Pricing</a>

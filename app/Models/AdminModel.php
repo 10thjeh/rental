@@ -246,10 +246,55 @@ class AdminModel extends Model
       DB::commit();
       if(!$query or !$delQuery){
         DB::rollback();
-        return redirect()->back()->withErrors(['errors' => 'Failed to perform deletion!']);;
+        return redirect()->back()->withErrors(['errors' => 'Failed to perform deletion!']);
       }
       return redirect()->route('admin');
     }
 
+    static function getGameShipping(){
+      $query = DB::table('gameorder')
+                   ->join('game', 'gameorder.gameId', '=', 'game.GameID')
+                   ->select('gameorder.*', 'game.NamaGame')
+                   ->where('status', 'Sedang dikirim')
+                   ->get();
+      return $query;
+    }
+
+    static function gameShipApprove($id){
+      DB::beginTransaction();
+      $query = DB::table('gameorder')
+                   ->where('gameOrderId', $id)
+                   ->update(['status' => 'Sudah dikirim']);
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return redirect()->back()->withErrors(['errors' => 'Failed to perform approve!']);
+      }
+
+      return redirect()->back();
+    }
+
+    static function getConsoleShipping(){
+      $query = DB::table('consoleorder')
+                   ->join('console', 'consoleorder.consoleId', '=', 'console.ConsoleID')
+                   ->select('consoleorder.*', 'console.NamaConsole')
+                   ->where('status', 'Sedang dikirim')
+                   ->get();
+      return $query;
+    }
+
+    static function consoleShipApprove($id){
+      DB::beginTransaction();
+      $query = DB::table('consoleorder')
+                   ->where('orderId', $id)
+                   ->update(['status' => 'Sudah dikirim']);
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return redirect()->back()->withErrors(['errors' => 'Failed to perform approve!']);
+      }
+
+      return redirect()->back();
+    }
 
 }

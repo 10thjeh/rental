@@ -18,6 +18,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
+                <br>
+                <br>
                 <h1 class="my-4">SHOP LIST</h1>
                 <div class="list-group">
                 <a class="list-group-item" href="{{url('console')}}">All Category</a>

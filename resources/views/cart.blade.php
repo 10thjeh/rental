@@ -1,3 +1,5 @@
+@extends('console.indexConsole')
+@section('content')
 <!--Section: Block Content-->
 <section>
 
@@ -100,36 +102,7 @@
       <!-- Card -->
 
       <!-- Card -->
-      <div class="card mb-3">
-        <div class="card-body">
-
-          <h5 class="mb-4">Expected shipping delivery</h5>
-
-          <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
-        </div>
-      </div>
-      <!-- Card -->
-
-      <!-- Card -->
-      <div class="card mb-3">
-        <div class="card-body">
-
-          <h5 class="mb-4">We accept</h5>
-
-          <img class="mr-2" width="45px"
-            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-            alt="Visa">
-          <img class="mr-2" width="45px"
-            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-            alt="American Express">
-          <img class="mr-2" width="45px"
-            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-            alt="Mastercard">
-          <img class="mr-2" width="45px"
-            src="https://z9t4u9f6.stackpathcdn.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
-            alt="PayPal acceptance mark">
-        </div>
-      </div>
+      
       <!-- Card -->
 
     </div>
@@ -137,14 +110,39 @@
 
     <!--Grid column-->
     <div class="col-lg-4">
+    <div class="card mb-3">
+        <div class="card-body">
 
+          <h5 class="mb-4">Expected shipping delivery</h5>
+
+          <p class="mb-0"> </p>
+          <p class="mb-0">Delivery Date : <?php 
+          date_default_timezone_set('Asia/Jakarta');
+          echo date("l")." ".date("Y/m/d");
+          echo " Time: " . date("h:i", strtotime('+1 hours'))?></p>
+        </div>
+      </div>
       <!-- Card -->
       <div class="card mb-3">
         <div class="card-body">
 
-          <h5 class="mb-3">The total amount of</h5>
+          <h5 class="mb-3">Receipt</h5>
 
           <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Order Date :
+              <span><?php 
+          date_default_timezone_set('Asia/Jakarta');
+          echo date("l")." ".date("Y/m/d");
+          ?></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Order Time :
+              <span><?php 
+          date_default_timezone_set('Asia/Jakarta');
+          echo date("h:i");
+          ?></span>
+            </li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
               Temporary amount
               <span>$25.98</span>
@@ -228,3 +226,4 @@ const addToCart = (product) => {
   updateProductList();
 }
 </script>
+@endsection

@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 //I dont want to actually sanitize admin inputs, why bother doing injections in admin page?
 //Just wreck the sql already dude
 
+//This whole file is just spaghetti, dont bother reading the code
+
 class AdminModelController extends Controller
 {
     function index(){
@@ -103,7 +105,13 @@ class AdminModelController extends Controller
 
     function gamereturn(){
         if(!Auth::authAdmin()) return redirect()->route('home');
-        return view('admingamereturnorders');
+        $orders = AdminModel::getGameReturn();
+        return view('admingamereturnorders', ['orders' => $orders]);
+    }
+
+    function gamereturnapprove($id){
+      if(!Auth::authAdmin()) return redirect()->route('home');
+      return AdminModel::gameReturnApprove($id);
     }
 
     function consoleship(){
@@ -119,7 +127,15 @@ class AdminModelController extends Controller
 
     function consolereturn(){
         if(!Auth::authAdmin()) return redirect()->route('home');
-        return view('adminconsolereturnorders');
+        $orders = AdminModel::getConsoleReturn();
+        return view('adminconsolereturnorders', ['orders' => $orders]);
+    }
+
+    function getallorders(){
+      if(!Auth::authAdmin()) return redirect()->route('home');
+      $consoles = AdminModel::getAllConsoleOrders();
+      $games = AdminModel::getAllGameOrders();
+      return view('adminallorders', ['consoles' => $consoles, 'games' => $games]);
     }
 
     function console(){

@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,22 +23,34 @@ use App\Http\Controllers\GameController;
 Route::get('/', function () {
     return view('welcome');
 });
-//Admin route
+/*==============
+Admin Route
+================*/
 Route::get('/admin', [AdminModelController::class,'index'])->name('admin');
+
 Route::get('/admin/games', [AdminModelController::class,'games'])->name('games');
 Route::get('/admin/gamedetails/{id}', [AdminModelController::class,'gameDetails'])->name('gameDetails');
+
 Route::post('/admin/submitgamechanges', [AdminModelController::class, 'submitGameChanges']);
 Route::post('/admin/submitconsolechanges', [AdminModelController::class, 'submitConsoleChanges']);
 Route::post('/admin/submitpricingchanges', [AdminModelController::class, 'submitPricingChanges']);
 Route::post('/admin/submitnewgame', [AdminModelController::class, 'submitnewgame']);
 Route::post('/admin/submitnewconsole', [AdminModelController::class, 'submitnewconsole']);
+
 Route::get('/admin/consoles', [AdminModelController::class,'console'])->name('consoles');
+/*==========
+Admin order routing
+===========*/
 Route::get('/admin/orders/game/ship', [AdminModelController::class,'gameship']);
 Route::get('/admin/orders/game/return', [AdminModelController::class, 'gamereturn']);
 Route::get('/admin/orders/game/ship/approve/{id}', [AdminModelController::class, 'gameshipapprove']);
 Route::get('/admin/orders/console/ship/approve/{id}', [AdminModelController::class, 'consoleshipapprove']);
+Route::get('/admin/orders/game/return/approve/{id}', [AdminModelController::class, 'gamereturnapprove']);
+Route::get('/admin/orders/console/return/approve/{id}', [AdminModelController::class, 'consolereturnapprove']);
 Route::get('/admin/orders/console/ship', [AdminModelController::class,'consoleship']);
 Route::get('/admin/orders/console/return', [AdminModelController::class, 'consolereturn']);
+Route::get('/admin/orders/all', [AdminModelController::class, 'getallorders']);
+
 Route::get('/admin/pricing', [AdminModelController::class,'pricing'])->name('pricing');
 Route::get('/admin/consoledetails/{id}', [AdminModelController::class, 'consoleDetails']);
 Route::get('/admin/configs', [AdminModelController::class,'configs'])->name('configs');
@@ -62,3 +75,6 @@ Route::get('/game', [GameController::class, 'index']);
 Route::get('/game/{gameid}', [GameController::class, 'genre']);
 Route::post('/game/addtocart', [GameController::class, 'addtocart']);
 Route::post('/console/addtocart', [ConsoleController::class, 'addtocart']);
+Route::get('/cart', [CartController::class, 'getcart']);
+Route::get('/cart/return/game/{id}', [CartController::class, 'returngame']);
+Route::get('/cart/return/console/{id}', [CartController::class, 'returnconsole']);

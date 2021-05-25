@@ -138,9 +138,120 @@ class CartModel extends Model
     }
 
     return redirect()->back();
+  }
 
+  /*==================================
+  USER CART FUNCTION
+  ==================================*/
 
+  //Get user cart
 
+  static function getConsoleCart($email){
+    $consoleQuery = DB::table('consoleorder')
+                        ->where('email', $email)
+                        ->get();
+
+    return $consoleQuery;
+  }
+
+  static function getGameCart($email){
+    $gameQuery = DB::table('gameorder')
+                        ->where('email', $email)
+                        ->get();
+
+    return $gameQuery;
+  }
+
+  //Siap di pickup>>>
+
+  static function returnGame($email, $id){
+    //Lets make sure that such email and id is valid
+    $count = DB::table('gameorder')
+                 ->where('email', $email)
+                 ->where('gameOrderId', $id)
+                 ->count();
+    //if the count is 0 we can sure the GET call is false and NG
+
+    if($count == 0) return redirect()->back()->withErrors(['errors' => 'Error : order not found']);
+
+    //Get order status, they maybe forced it
+    //Check if order status is "Sudah dikirim"
+
+    $orderStatusQuery = DB::table('gameorder')
+                            ->where('email', $email)
+                            ->where('gameOrderId', $id)
+                            ->get();
+
+    $orderStatus = null;
+
+    foreach ($orderStatusQuery as $o) {
+      $orderStatus = $o->status;
+    }
+
+    if($orderStatus == null) return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
+    if($orderStatus !== "Sudah dikirim") return redirect()->back()->withErrors(['errors' => 'Error : invalid status!']);
+
+    //All set nothing is sus
+
+    DB::beginTransaction();
+
+    $query = DB::table('gameorder')
+                 ->where('email', $email)
+                 ->where('gameOrderId', $id)
+                 ->update(['status' => 'Siap di Pick-up']);
+
+    DB::commit();
+    if(!$query){
+      DB::rollback();
+      return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
+    }
+
+    return redirect()->back();
+  }
+
+  static function returnConsole($email, $id){
+    //Lets make sure that such email and id is valid
+    $count = DB::table('consoleorder')
+                 ->where('email', $email)
+                 ->where('orderId', $id)
+                 ->count();
+    //if the count is 0 we can sure the GET call is false and NG
+
+    if($count == 0) return redirect()->back()->withErrors(['errors' => 'Error : order not found']);
+
+    //Get order status, they maybe forced it
+    //Check if order status is "Sudah dikirim"
+
+    $orderStatusQuery = DB::table('consoleorder')
+                            ->where('email', $email)
+                            ->where('orderId', $id)
+                            ->get();
+
+    $orderStatus = null;
+
+    foreach ($orderStatusQuery as $o) {
+      $orderStatus = $o->status;
+    }
+
+    if($orderStatus == null) return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
+    if($orderStatus !== "Sudah dikirim") return redirect()->back()->withErrors(['errors' => 'Error : invalid status!']);
+
+    //All set nothing is sus
+
+    DB::beginTransaction();
+
+    $query = DB::table('consoleorder')
+                 ->where('email', $email)
+                 ->where('orderId', $id)
+                 ->update(['status' => 'Siap di Pick-up']);
+
+    DB::commit();
+    if(!$query){
+      DB::rollback();
+      return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
+    }
+
+    return redirect()->back();
   }
 
 

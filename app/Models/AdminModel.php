@@ -297,4 +297,71 @@ class AdminModel extends Model
       return redirect()->back();
     }
 
+    static function gameReturnApprove($id){
+      DB::beginTransaction();
+      $query = DB::table('gameorder')
+                   ->where('gameOrderId', $id)
+                   ->update(['status' => 'Selesai']);
+
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return redirect()->back()->withErrors(['errors' => 'Failed to perform approve!']);
+      }
+
+      return redirect()->back();
+    }
+
+    static function consoleReturnApprove($id){
+      DB::beginTransaction();
+      $query = DB::table('gameorder')
+                   ->where('gameOrderId', $id)
+                   ->where('status', 'Siap di Pick-up')
+                   ->update(['status' => 'Selesai']);
+
+      DB::commit();
+      if(!$query){
+        DB::rollback();
+        return redirect()->back()->withErrors(['errors' => 'Failed to perform approve!']);
+      }
+
+      return redirect()->back();
+    }
+
+    static function getGameReturn(){
+      $query = DB::table('gameorder')
+                   ->join('game', 'gameorder.gameId', '=', 'game.GameID')
+                   ->select('gameorder.*', 'game.NamaGame')
+                   ->where('status', 'Siap di Pick-up')
+                   ->get();
+
+      return $query;
+    }
+    static function getConsoleReturn(){
+      $query = DB::table('consoleorder')
+                   ->join('console', 'consoleorder.consoleId', '=', 'console.ConsoleID')
+                   ->select('consoleorder.*', 'console.NamaConsole')
+                   ->where('status', 'Siap di Pick-up')
+                   ->get();
+      return $query;
+    }
+
+    static function getAllConsoleOrders(){
+      $query = DB::table('consoleorder')
+                  ->join('console', 'consoleorder.consoleId', '=', 'console.ConsoleID')
+                  ->select('consoleorder.*', 'console.NamaConsole')
+                  ->get();
+
+      return $query;
+    }
+
+    static function getAllGameOrders(){
+      $query = DB::table('gameorder')
+                   ->join('game', 'gameorder.gameId', '=', 'game.GameID')
+                   ->select('gameorder.*', 'game.NamaGame')
+                   ->get();
+
+      return $query;
+    }
+
 }

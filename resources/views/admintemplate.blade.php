@@ -26,6 +26,7 @@
                 Orders
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{url('/admin/orders/all')}}">All orders</a></li>
                 <li><a class="dropdown-item" href="{{url('/admin/orders/game/ship')}}">Game : Shipping approval</a></li>
                 <li><a class="dropdown-item" href="{{url('/admin/orders/game/return')}}">Game : Return approval</a></li>
                 <li><a class="dropdown-item" href="{{url('/admin/orders/console/ship')}}">Console : Shipping approval</a></li>

@@ -31,8 +31,8 @@
               <div>
                 <div class="d-flex justify-content-between">
                   <div>
-                    <h5>{{$game->NamaGame}}</h5>
-                    <p class="mb-3 text-muted text-uppercase small">{{$game->deskripsi}}</p>
+                    <h5>Doom : Eternal</h5>
+                    <p class="mb-3 text-muted text-uppercase small">DUAR MEKIA</p>
                   </div>
                   <div>
                     <div class="def-number-input number-input safari_only mb-0 w-100">
@@ -48,7 +48,7 @@
                     <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i
                         class="fas fa-trash-alt mr-1"></i> Remove item </a>
                   </div>
-                  <p class="mb-0"><span><strong>Rp. {{$game->harga}}</strong></span></p>
+                  <p class="mb-0"><span><strong>Rp. 69420</strong></span></p>
                 </div>
               </div>
             </div>
@@ -72,8 +72,8 @@
               <div>
                 <div class="d-flex justify-content-between">
                   <div>
-                    <h5>{{$console->NamaConsole}}</h5>
-                    <p class="mb-3 text-muted text-uppercase small">{{$console->deskripsi}}</p>
+                    <h5>Atari See Hong Puff</h5>
+                    <p class="mb-3 text-muted text-uppercase small">console garing</p>
                   </div>
                   <div>
                     <div class="def-number-input number-input safari_only mb-0 w-100">
@@ -88,7 +88,7 @@
                     <a href="#!" type="button" class="card-link-secondary small text-uppercase"><i
                         class="fas fa-heart mr-1"></i> Move to wish list </a>
                   </div>
-                  <p class="mb-0"><span><strong>{{$console->harga}}</strong></span></p>
+                  <p class="mb-0"><span><strong>Rp. 42069</strong></span></p>
                 </div>
               </div>
             </div>

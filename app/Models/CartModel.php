@@ -183,13 +183,26 @@ class CartModel extends Model
                             ->get();
 
     $orderStatus = null;
-
+    $consoleId = null;
     foreach ($orderStatusQuery as $o) {
       $orderStatus = $o->status;
+      $gameId = $o->gameId;
     }
 
     if($orderStatus == null) return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
     if($orderStatus !== "Sudah dikirim") return redirect()->back()->withErrors(['errors' => 'Error : invalid status!']);
+
+    //get qty
+    $stockReadyQ = DB::table('game')
+                      ->where('GameID', $gameId)
+                      ->get();
+
+    $stockReady = null;
+    foreach ($stockReadyQ as $s) {
+      $stockReady = $s->qtyReady;
+    }
+
+    $stockReady = $stockReady + 1;
 
     //All set nothing is sus
 
@@ -200,8 +213,12 @@ class CartModel extends Model
                  ->where('gameOrderId', $id)
                  ->update(['status' => 'Siap di Pick-up']);
 
+    $qtyQuery = DB::table('game')
+                    ->where('GameID', $gameId)
+                    ->update(['qtyReady' => $stockReady]);
+
     DB::commit();
-    if(!$query){
+    if(!$query or !$qtyQuery){
       DB::rollback();
       return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
     }
@@ -228,13 +245,26 @@ class CartModel extends Model
                             ->get();
 
     $orderStatus = null;
-
+    $consoleId = null;
     foreach ($orderStatusQuery as $o) {
       $orderStatus = $o->status;
+      $consoleId = $o->consoleId;
     }
 
     if($orderStatus == null) return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
     if($orderStatus !== "Sudah dikirim") return redirect()->back()->withErrors(['errors' => 'Error : invalid status!']);
+
+    //get qty
+    $stockReadyQ = DB::table('console')
+                      ->where('ConsoleID', $consoleId)
+                      ->get();
+
+    $stockReady = null;
+    foreach ($stockReadyQ as $s) {
+      $stockReady = $s->qtyReady;
+    }
+
+    $stockReady = $stockReady + 1;
 
     //All set nothing is sus
 
@@ -245,8 +275,12 @@ class CartModel extends Model
                  ->where('orderId', $id)
                  ->update(['status' => 'Siap di Pick-up']);
 
+    $qtyQuery = DB::table('console')
+                  ->where('ConsoleID', $consoleId)
+                  ->update(['qtyReady' => $stockReady]);
+
     DB::commit();
-    if(!$query){
+    if(!$query or !$qtyQuery){
       DB::rollback();
       return redirect()->back()->withErrors(['errors' => 'Error : unknown error']);
     }

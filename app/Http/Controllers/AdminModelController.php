@@ -131,6 +131,11 @@ class AdminModelController extends Controller
         return view('adminconsolereturnorders', ['orders' => $orders]);
     }
 
+    function consolereturnapprove($id){
+      if(!Auth::authAdmin()) return redirect()->route('home');
+      return AdminModel::consoleReturnApprove($id);
+    }
+
     function getallorders(){
       if(!Auth::authAdmin()) return redirect()->route('home');
       $consoles = AdminModel::getAllConsoleOrders();

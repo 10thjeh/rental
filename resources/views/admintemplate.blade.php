@@ -16,6 +16,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{route('consoles')}}">Console</a>
             </li>
             <li class="nav-item">
@@ -33,9 +36,6 @@
                 <li><a class="dropdown-item" href="{{url('/admin/orders/console/return')}}">Console : Return approval</a></li>
               </ul>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{route('pricing')}}">Pricing</a>
-            </li> -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Add new...

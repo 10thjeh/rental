@@ -14,6 +14,7 @@ class CartController extends Controller
       $email = session('email');
       $consoleCart = CartModel::getConsoleCart($email);
       $gameCart = CartModel::getGameCart($email);
+      // dd($gameCart);
       return view('cart', ['consoleCart' => $consoleCart, 'gameCart' => $gameCart]);
     }
 

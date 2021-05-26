@@ -13,6 +13,7 @@ class CartModel extends Model
     $checkOrder = DB::table('gameorder')
                       ->where('email', $userEmail)
                       ->where('gameId', $gameId)
+                      ->where('status', '<>', 'Selesai')
                       ->count();
     if($checkOrder > 0) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : you already rented this game']);
 
@@ -79,8 +80,9 @@ class CartModel extends Model
     $checkOrder = DB::table('consoleorder')
                       ->where('email', $userEmail)
                       ->where('consoleId', $consoleId)
+                      ->where('status', '<>', 'Selesai')
                       ->count();
-    if($checkOrder > 0) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : you already rented this game']);
+    if($checkOrder > 0) return redirect()->back()->withErrors(['errors' => 'Cant add to cart : you already rented this console']);
 
     //Check if stock is ready
     $stockReadyQ = DB::table('console')
@@ -149,6 +151,8 @@ class CartModel extends Model
   static function getConsoleCart($email){
     $consoleQuery = DB::table('consoleorder')
                         ->where('email', $email)
+                        ->join('console', 'consoleorder.consoleId', '=', 'console.ConsoleID')
+                        ->select('consoleorder.*', 'console.NamaConsole', 'console.deskripsi', 'console.gambar')
                         ->get();
 
     return $consoleQuery;
@@ -157,6 +161,8 @@ class CartModel extends Model
   static function getGameCart($email){
     $gameQuery = DB::table('gameorder')
                         ->where('email', $email)
+                        ->join('game', 'gameorder.gameId', '=', 'game.GameID')
+                        ->select('gameorder.*', 'game.NamaGame', 'game.deskripsi', 'game.gambar')
                         ->get();
 
     return $gameQuery;

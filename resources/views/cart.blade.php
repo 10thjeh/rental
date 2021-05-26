@@ -1,4 +1,4 @@
-@extends('console.indexConsole')
+@extends('console/indexConsole')
 @section('content')
 <!--Section: Block Content-->
 <section>

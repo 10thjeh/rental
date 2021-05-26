@@ -1,4 +1,4 @@
-@extends('game.indexGame')
+@extends('game/indexGame')
 @section('content')
 
 @if(count($errors) > 0 )

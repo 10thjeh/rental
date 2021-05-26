@@ -38,7 +38,7 @@
                   </div>
                   <div>
                     <div class="def-number-input number-input safari_only mb-0 w-100">
-                      <input class="quantity" min="0" name="quantity" value="1" type="number">
+                      <input class="quantity" min="0" name="quantity" value="1" type="number" disabled>
                     </div>
                     <small id="passwordHelpBlock" class="form-text text-muted text-center">
                       (Note, 1 piece)
@@ -55,56 +55,10 @@
               </div>
             </div>
           </div>
-          <hr class="mb-4">
-          <di class="row mb-4">
-            <div class="col-md-5 col-lg-3 col-xl-3">
-              <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                <img class="img-fluid w-100"
-                  src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg" alt="Sample">
-                <a href="#!">
-                  <div class="mask waves-effect waves-light">
-                    <img class="img-fluid w-100"
-                      src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg">
-                    <div class="mask rgba-black-slight waves-effect waves-light"></div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-7 col-lg-9 col-xl-9">
-              <div>
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <h5>Atari See Hong Puff</h5>
-                    <p class="mb-3 text-muted text-uppercase small">console garing</p>
-                  </div>
-                  <div>
-                    <div class="def-number-input number-input safari_only mb-0 w-100">
-                      <input class="quantity" min="0" name="quantity" value="1" type="number">
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i
-                        class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                    <a href="#!" type="button" class="card-link-secondary small text-uppercase"><i
-                        class="fas fa-heart mr-1"></i> Move to wish list </a>
-                  </div>
-                  <p class="mb-0"><span><strong>Rp. 42069</strong></span></p>
-                </div>
-              </div>
-            </div>
-          </di>
           <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
             items to your cart does not mean booking them.</p>
         </div>
       </div>
-      <!-- Card -->
-
-      <!-- Card -->
-      
-      <!-- Card -->
-
     </div>
     <!--Grid column-->
 
@@ -144,12 +98,18 @@
           ?></span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Temporary amount
+              Temporary amount :
               <span>$25.98</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
               Shipping
               <span>Free</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              Status :
+                <strong>
+                <span>In Progress</span>
+              </strong>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
               <div>
@@ -162,68 +122,11 @@
             </li>
           </ul>
 
-          <button type="button" class="btn btn-primary btn-block waves-effect waves-light">go to checkout</button>
+          <button type="button" class="btn btn-primary btn-block waves-effect waves-light" disabled>Ready to Pickup</button>
 
         </div>
       </div>
-      <!-- Card -->
-
-      <!-- Card -->
-      <!--<div class="card mb-3">
-        <div class="card-body">
-
-          <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
-            aria-expanded="false" aria-controls="collapseExample1">
-            Add a discount code (optional)
-            <span><i class="fas fa-chevron-down pt-1"></i></span>
-          </a>
-
-          <div class="collapse" id="collapseExample1">
-            <div class="mt-3">
-              <div class="md-form md-outline mb-0">
-                <input type="text" id="discount-code1" class="form-control font-weight-light"
-                  placeholder="Enter discount code">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>-->
-      <!-- Card -->
-
     </div>
-    <!--Grid column-->
-
   </div>
-  <!--Grid row-->
-
 </section>
-<!--Section: Block Content-->
-<script>
-$('.add-to-cart').on('click', (e) => {
-  addToCart(e.currentTarget)
-})
-
-const addToCart = (product) => {
-  const productId = $(product).attr('productId');
-  const isAlreadyInCart = $.grep(productsInCart, el => {return el.id == productId}).length;
-
-  if (isAlreadyInCart) {
-    $.each(storageData, (i, el) => {
-      if (productId == el.id) {
-        el.itemsNumber += 1;
-      }
-    })
-  } else {
-    const newProduct = {
-      id: Number(productId),
-      itemsNumber: 1
-    }
-
-    storageData.push(newProduct);
-  }
-
-  updateCart();
-  updateProductList();
-}
-</script>
 @endsection

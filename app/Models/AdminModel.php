@@ -314,8 +314,8 @@ class AdminModel extends Model
 
     static function consoleReturnApprove($id){
       DB::beginTransaction();
-      $query = DB::table('gameorder')
-                   ->where('gameOrderId', $id)
+      $query = DB::table('consoleorder')
+                   ->where('orderId', $id)
                    ->where('status', 'Siap di Pick-up')
                    ->update(['status' => 'Selesai']);
 

@@ -35,7 +35,7 @@
                   <label for="inputPassword">Password</label>
                 </div>
 
-                <script src="https://vivirenremoto.github.io/doomcaptcha/script.js?version=11" sound="on" countdown="on" label="Captcha" enemies="4"></script>
+                <script src="https://vivirenremoto.github.io/doomcaptcha/script.js?version=11" sound="on" countdown="on" label="Captcha" enemies="2"></script>
 
                 <div class="custom-control custom-checkbox mb-3">
                   <input type="checkbox" class="custom-control-input" id="customCheck1">

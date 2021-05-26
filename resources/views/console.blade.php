@@ -1,4 +1,4 @@
-@extends('console.indexConsole')
+@extends('console/indexConsole')
 @section('content')
 
 @if(count($errors) > 0 )

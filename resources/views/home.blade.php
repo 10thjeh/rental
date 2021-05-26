@@ -1,4 +1,4 @@
-@extends('layout.front.app')
+@extends('layout/front/app')
 @section('content')
 
 <section class="projects-section bg-light" id="projects">

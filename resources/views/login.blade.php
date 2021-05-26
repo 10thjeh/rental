@@ -1,4 +1,4 @@
-@extends('SignIn.indexSignIn')
+@extends('SignIn/indexSignIn')
 @section('content')
 
 

@@ -229,7 +229,7 @@ class AdminModel extends Model
         DB::rollback();
         return back();
       }
-      return redirect()->route('admin');
+      return redirect()->back();
     }
 
     static function deleteGenre($genreId){
@@ -244,11 +244,11 @@ class AdminModel extends Model
                    ->where(['genreId' => $genreId])
                    ->delete();
       DB::commit();
-      if(!$query or !$delQuery){
+      if(!$query){
         DB::rollback();
         return redirect()->back()->withErrors(['errors' => 'Failed to perform deletion!']);
       }
-      return redirect()->route('admin');
+      return redirect()->back();
     }
 
     static function getGameShipping(){

@@ -16,7 +16,8 @@
     </ul>
   </div>
   @endif
-  <form class="" action="index.html" method="post">
+  <form class="" action="{{url('/admin/submitnewgenre')}}" method="post">
+    @csrf
     <div class="mb-3">
       <label for="genre" class="form-label">Genre</label>
       <input type="text" class="form-control" name="genre" id="genre">
@@ -24,7 +25,8 @@
     <button type="submit" class="btn btn-primary">Add</button>
   </form>
   <h2>Delete genre</h2>
-  <form class="" action="index.html" method="post">
+  <form class="" action="{{url('/admin/deletegenre')}}" method="post">
+    @csrf
     <div class="mb-3">
       <label for="genre" class="form-label">Genre</label>
       <select class="form-select" name="genre" id="genre" aria-label="genre">

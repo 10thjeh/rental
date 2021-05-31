@@ -143,6 +143,7 @@ class AdminModel extends Model
                      'NamaGame' => $namaGame,
                      'platform' => $platform,
                      'qty' => $qty,
+                     'qtyReady' => $qty,
                      'deskripsi' => $description,
                      'harga' => $harga,
                      'gambar' => $namaGambar
@@ -207,6 +208,7 @@ class AdminModel extends Model
     static function deleteGame($id){
       DB::beginTransaction();
       $genreQuery = DB::table('genre')->where('idGame', $id)->delete();
+      $gameQuery = DB::table('gameorder')->where('gameId', $id)->delete();
       $query = DB::table('game')->where('GameID', $id)->delete();
       DB::commit();
       if(!$query or !$genreQuery){

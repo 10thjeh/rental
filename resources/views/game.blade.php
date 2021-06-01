@@ -1,4 +1,4 @@
-@extends('game/indexGame')
+@extends('console/indexConsole')
 @section('content')
 
 @if(count($errors) > 0 )
@@ -70,8 +70,9 @@
                                         <br>
                                         <h6>Available in store {{$game->qty}}</h6>
                                         <hr>
-                                        <h5>Rp. {{$game->harga}}</h5>
-                                        <p class="card-text">{{$game->deskripsi}}</p>
+                                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#gameModal-{{$game->GameID}}">
+                                            description
+                                        </button>
                                     </div>
                                     <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>
                                     <form class="card-footer" action="{{url('/game/addtocart')}}" method="post">
@@ -97,6 +98,33 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+@foreach($games as $game)
+
+<div class="modal fade" id="gameModal-{{$game->GameID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{$game->NamaGame}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <h5>Rp. {{$game->harga}}</h5>
+                    <p class="card-text">{{$game->deskripsi}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+@endforeach
+
+
 <style>
 body {
     animation: fadeInAnimation ease 3s

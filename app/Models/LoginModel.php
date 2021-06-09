@@ -23,6 +23,9 @@ class LoginModel extends Model
       if(strlen($password) < 8) return redirect()->back()->withErrors(['errors' => 'Password length need to more or equal than 8']);
       //Laravel provides validation but sudah terlanjur pake ginian
 
+      $checkEmailQuery = DB::table('users')->where('email', $email)->count();
+      if($checkEmailQuery > 0) return redirect()->back()->withErrors(['errors' => 'Email already registered!']);
+
       //Hash the password
       $password = Hash::make($password);
 

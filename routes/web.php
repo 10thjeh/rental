@@ -75,6 +75,7 @@ Route::get('/game', [GameController::class, 'index']);
 Route::get('/game/{gameid}', [GameController::class, 'genre']);
 Route::post('/game/addtocart', [GameController::class, 'addtocart']);
 Route::post('/console/addtocart', [ConsoleController::class, 'addtocart']);
-Route::get('/cart', [CartController::class, 'getcart']);
+Route::get('/orderlist', [CartController::class, 'getcart']);
 Route::get('/cart/return/game/{id}', [CartController::class, 'returngame']);
 Route::get('/cart/return/console/{id}', [CartController::class, 'returnconsole']);
+Route::get('/cart', [CartController::class, 'tempcart']);

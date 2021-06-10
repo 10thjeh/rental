@@ -25,8 +25,9 @@ class ConsoleController extends Controller
       if(!Auth::isLoggedIn()) return redirect()->route('login');
       $response = request()->post();
       $consoleId = $response['consoleId'];
-      $hari = $response['hari'];
+      // $hari = $response['hari'];
       $userEmail = session('email');
-      return CartModel::addConsoleToCart($consoleId, $userEmail, $hari);
+      return CartModel::consoleTemp($userEmail, $consoleId);
+      // return CartModel::addConsoleToCart($consoleId, $userEmail, $hari);
     }
 }

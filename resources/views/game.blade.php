@@ -79,15 +79,6 @@
                                     <form class="card-footer" action="{{url('/game/addtocart')}}" method="post">
                                       @csrf
                                       <input type="text" name="gameId" value="{{$game->GameID}}" hidden>
-                                      <select class="form-select" aria-label="Default select example" id="manufacturer" name="hari">
-                                        <option value="1">1 Day</option>
-                                        <option value="2">2 Days</option>
-                                        <option value="3">3 Days</option>
-                                        <option value="4">4 Days</option>
-                                        <option value="5">5 Days</option>
-                                        <option value="6">6 Days</option>
-                                        <option value="7">7 Days</option>
-                                      </select>
                                       <button type="submit" class="btn btn-primary">Rent</button>
                                     </form>
                                 </div>

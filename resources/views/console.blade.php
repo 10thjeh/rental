@@ -14,7 +14,7 @@
 </div>
 @endif
 
-<link rel="stylesheet" href="{{asset('public\front\css\bootstrap.min.css')}}">   
+<link rel="stylesheet" href="{{asset('public\front\css\bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('public\front\css\mdb.min.css')}}">
 <link rel="stylesheet" href="{{asset('public\front\css\style.css')}}">
 
@@ -69,15 +69,6 @@
                                         <form class="card-footer" action="{{url('/console/addtocart')}}" method="post">
                                           @csrf
                                           <input type="text" name="consoleId" value="{{$console->ConsoleID}}" hidden>
-                                          <select class="form-select" aria-label="Default select example" id="manufacturer" name="hari">
-                                            <option value="1">1 Day</option>
-                                            <option value="2">2 Days</option>
-                                            <option value="3">3 Days</option>
-                                            <option value="4">4 Days</option>
-                                            <option value="5">5 Days</option>
-                                            <option value="6">6 Days</option>
-                                            <option value="7">7 Days</option>
-                                          </select>
                                           <button type="submit" class="btn btn-primary">Rent</button>
                                         </form>
                                     </div>

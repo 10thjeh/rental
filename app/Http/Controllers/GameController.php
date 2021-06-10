@@ -26,8 +26,9 @@ class GameController extends Controller
       if(!Auth::isLoggedIn()) return redirect()->route('login');
       $response = request()->post();
       $gameId = $response['gameId'];
-      $hari = $response['hari'];
+      // $hari = $response['hari'];
       $userEmail = session('email');
-      return CartModel::addGameToCart($gameId, $userEmail, $hari);
+      return CartModel::gameTemp($userEmail, $gameId);
+      // return CartModel::addGameToCart($gameId, $userEmail, $hari);
     }
 }

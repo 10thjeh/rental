@@ -4,7 +4,7 @@
 <section>
 
   <!--Grid row-->
-  <div class="row">
+  <div class="row" style="max-width:100%;">
 
     <!--Grid column-->
     <div class="col-lg-8">
@@ -55,8 +55,12 @@
                   </div> -->
                   <p class="mb-0"><span><strong>Rp. {{$console->harga}}</strong></span></p>
                   <p class="mb-0">Status : {{$console->status}}</p>
+                  
                 </div>
                 <a role="button" type="button" href="{{url('/cart/return/console/'.$console->orderId)}}" class="btn btn-primary btn-block waves-effect waves-light <?php if($console->status != "Sudah dikirim") echo "disabled"; ?>">Ready to Pickup</a>
+                <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-danger">Delete</button>
+                </div>
               </div>
             </div>
           </div>
@@ -105,6 +109,9 @@
                   <p class="mb-0">Status : {{$game->status}}</p>
                 </div>
                 <a role="button" type="button" href="{{url('/cart/return/game/'.$game->gameOrderId)}}" class="btn btn-primary btn-block waves-effect waves-light <?php if($game->status != "Sudah dikirim") echo "disabled"; ?>">Ready to Pickup</a>
+                <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-danger">Delete</button>
+                </div>
               </div>
             </div>
           </div>
@@ -117,7 +124,7 @@
     <!--Grid column-->
 
     <!--Grid column-->
-    <div class="col-lg-4">
+    <divss class="col-lg-4">
     <div class="card mb-3">
         <div class="card-body">
 
@@ -137,6 +144,18 @@
           <h5 class="mb-3">Receipt</h5>
 
           <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Choose Rent Time :
+              <select class="form-select" aria-label="Default select example" id="manufacturer" name="hari">
+                                        <option value="1">1 Day</option>
+                                        <option value="2">2 Days</option>
+                                        <option value="3">3 Days</option>
+                                        <option value="4">4 Days</option>
+                                        <option value="5">5 Days</option>
+                                        <option value="6">6 Days</option>
+                                        <option value="7">7 Days</option>
+                                      </select>
+            </li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
               Order Date :
               <span><?php
@@ -153,7 +172,7 @@
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
               Temporary amount :
-              <span>$25.98</span>
+              <span>Rp. XXX</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
               Shipping
@@ -172,15 +191,15 @@
                   <p class="mb-0">(including VAT)</p>
                 </strong>
               </div>
-              <span><strong>$53.98</strong></span>
+              <span><strong>Rp. XXX</strong></span>
             </li>
           </ul>
 
-          <button type="button" class="btn btn-primary btn-block waves-effect waves-light" disabled>Ready to Pickup</button>
+          <button type="button" class="btn btn-primary btn-block waves-effect waves-light">Confirm Order</button>
 
         </div>
       </div>
-    </div>
+    </divss>
   </div>
 </section>
 @endsection

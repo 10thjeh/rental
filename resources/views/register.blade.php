@@ -4,9 +4,11 @@
 
 <body class="masthead">
   <div class="container" >
+    <div class="biarnggamepet" style="margin-top:50px;">
     <div class="row">
       <div class="col-lg-10 col-xl-9 mx-auto">
         <div class="card card-signin flex-row my-5">
+
           <div class="card-img-left d-none d-md-flex">
              <!-- Background image for card set in CSS! -->
           </div>
@@ -73,6 +75,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </body>
 
@@ -105,7 +108,7 @@
 .card-signin .card-img-left {
   width: 45%;
   /* Link to your background image using in the property below! */
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("{{asset('front/assets/img/bg-masthead.jpg')}}");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("{{asset('front/assets/img/registergan2.png')}}");
   background-size: cover;
 }
 

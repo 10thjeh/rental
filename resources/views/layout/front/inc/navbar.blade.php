@@ -25,6 +25,7 @@
                         @endif
                         @if(session('isLoggedIn') == True)
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/cart')}}">Cart</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/orderlist')}}">Order</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/logout')}}">Log Out</a></li>
                         @endif
                     </ul>

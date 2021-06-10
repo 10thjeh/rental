@@ -337,4 +337,82 @@ class CartModel extends Model
     return redirect('/cart');
   }
 
+  static function getGameTemp($email){
+    $query = DB::table('tempcartgame')
+               ->join('game', 'tempcartgame.idGame', '=', 'game.GameID')
+               ->where('email', $email)
+               ->get();
+
+    return $query;
+  }
+
+  static function getConsoleTemp($email){
+    $query = DB::table('tempcartconsole')
+               ->join('console', 'tempcartconsole.consoleId', '=', 'console.ConsoleID')
+               ->where('email', $email)
+               ->get();
+    return $query;
+  }
+
+  static function deleteGame($email, $id){
+    DB::beginTransaction();
+    $query = DB::table('tempcartgame')
+               ->where('email', $email)
+               ->where('idGame', $id)
+               ->delete();
+    DB::commit();
+    if(!$query){
+      DB::rollback();
+      return redirect()->back()->withErrors(['errors' => 'Unknown error']);
+    }
+
+    return redirect('/cart');
+  }
+
+  static function deleteConsole($email, $id){
+    DB::beginTransaction();
+    $query = DB::table('tempcartconsole')
+               ->where('email', $email)
+               ->where('consoleId', $id)
+               ->delete();
+    DB::commit();
+    if(!$query){
+      DB::rollback();
+      return redirect()->back()->withErrors(['errors' => 'Unknown error']);
+    }
+
+    return redirect('/cart');
+  }
+
+  static function checkout($email, $day){
+    //do game first
+    $gameCart = DB::table('tempcartgame')
+                  ->where('email', $email)
+                  ->get();
+
+    foreach ($gameCart as $game) {
+      $gameDetails = DB::table('game')->where('GameID', $game->idGame)->first();
+      $gameId = $gameDetails->GameID;
+      CartModel::addGameToCart($gameId, $email, $day);
+    }
+
+    //then consoles
+    $consoleCart = DB::table('tempcartconsole')
+                     ->where('email', $email)
+                     ->get();
+   foreach ($consoleCart as $console) {
+     $consoleDetails = DB::table('console')->where('ConsoleID', $console->consoleId)->first();
+     $consoleId = $consoleDetails->ConsoleID;
+     CartModel::addConsoleToCart($consoleId, $email, $day);
+   }
+
+   //Cleaning service job
+   DB::beginTransaction();
+   $queryGame = DB::table('tempcartgame')->where('email', $email)->delete();
+   $queryConsole = DB::table('tempcartconsole')->where('email', $email)->delete();
+   DB::commit();
+   
+   return redirect('/orderlist');
+  }
+
 }

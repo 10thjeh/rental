@@ -31,7 +31,47 @@ class CartController extends Controller
     }
 
     function tempcart(){
-      return view('tempcart');
+      if(!Auth::isLoggedIn()) return redirect()->route('login');
+      $email = session('email');
+      $gameCart = CartModel::getGameTemp($email);
+      $consoleCart = CartModel::getConsoleTemp($email);
+      $gamePrice = 0;
+      $consolePrice = 0;
+      foreach ($gameCart as $g) {
+        $gamePrice += $g->harga;
+      }
+      foreach ($consoleCart as $c) {
+        $consolePrice += $c->harga;
+      }
+      // dd($consoleCart);
+      $finalPrice = $consolePrice + $gamePrice;
+      return view('tempcart', [
+        'consoleCart' => $consoleCart,
+        'gameCart' => $gameCart,
+        'price' => $finalPrice
+      ]);
+    }
+
+    function deletegame($id){
+      if(!Auth::isLoggedIn()) return redirect()->route('login');
+      $email = session('email');
+      return CartModel::deleteGame($email, $id);
+    }
+
+    function deleteconsole($id){
+      if(!Auth::isLoggedIn()) return redirect()->route('login');
+      $email = session('email');
+      return CartModel::deleteConsole($email, $id);
+    }
+
+    function checkout(Request $request){
+      if(!Auth::isLoggedIn()) return redirect()->route('login');
+      $request->validate([
+        'days' => 'required|numeric|min:0|multiple_of:1'
+      ]);
+      $email = session('email');
+      $days = $request->days;
+      return CartModel::checkout($email, $days);
     }
 
 }

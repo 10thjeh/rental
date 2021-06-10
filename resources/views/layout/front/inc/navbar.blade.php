@@ -1,6 +1,9 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+<head>
+<title>CrustyCRUD Rent</title>
+        <link rel="icon" type="image/x-icon" href="{{asset('front/assets/img/rentLogo1.png')}}" />
+</head>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
             <div class="logo">

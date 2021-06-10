@@ -4,7 +4,7 @@
 <section>
 
   <!--Grid row-->
-  <div class="row">
+  <div class="row" style="max-width:100%;">
 
     <!--Grid column-->
     <div class="col-lg-8">
@@ -55,8 +55,12 @@
                   </div> -->
                   <p class="mb-0"><span><strong>Rp. {{$console->harga}}</strong></span></p>
                   <p class="mb-0">Status : {{$console->status}}</p>
+                  
                 </div>
                 <a role="button" type="button" href="{{url('/cart/return/console/'.$console->orderId)}}" class="btn btn-primary btn-block waves-effect waves-light <?php if($console->status != "Sudah dikirim") echo "disabled"; ?>">Ready to Pickup</a>
+                <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-danger">Delete</button>
+                </div>
               </div>
             </div>
           </div>
@@ -105,6 +109,9 @@
                   <p class="mb-0">Status : {{$game->status}}</p>
                 </div>
                 <a role="button" type="button" href="{{url('/cart/return/game/'.$game->gameOrderId)}}" class="btn btn-primary btn-block waves-effect waves-light <?php if($game->status != "Sudah dikirim") echo "disabled"; ?>">Ready to Pickup</a>
+                <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-danger">Delete</button>
+                </div>
               </div>
             </div>
           </div>
@@ -117,7 +124,7 @@
     <!--Grid column-->
 
     <!--Grid column-->
-    <div class="col-lg-4">
+    <divss class="col-lg-4">
     <div class="card mb-3">
         <div class="card-body">
 
@@ -180,7 +187,7 @@
 
         </div>
       </div>
-    </div>
+    </divss>
   </div>
 </section>
 @endsection

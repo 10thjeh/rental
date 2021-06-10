@@ -55,7 +55,6 @@
                 </div>
 			</div>
                    @foreach($consoles as $console)
-
                             <div class="col-lg-4 col-md-6 mb-4" data-aos="flip-left">
                                 <div class="card h-100">
                                     <a href="#!"><img class="card-img-top" src="<?php echo ($console->gambar !== '')?url('img/console/'.$console->gambar):"https://via.placeholder.com/700x400"; ?>" alt="..." /></a>
@@ -63,7 +62,7 @@
                                         <h4 class="card-title"><a href="#!">{{$console->NamaConsole}}</a></h4>
                                     </div>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{$console->ConsoleID}}">
-                                    description
+                                    DETAIL
                                     </button>
                                     <div class="card-footer">
                                         <small class="text-muted">★ ★ ★ ★ ☆</small>
@@ -104,12 +103,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                    <h5>$24.99</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                    <h5>Price : Rp. {{$console->harga}}</h5>
+                    <p class="card-text">{{$console->deskripsi}}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                     </div>
                 </div>

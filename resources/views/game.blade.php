@@ -21,15 +21,16 @@
                 <br>
                 <br>
                 <h1 class="my-4">SHOP LIST</h1>
-                <div class="list-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genres</button>
-                    <div class="dropdown-menu">
-                        <a class="list-group-item" href="{{url('game')}}">All Genre</a>
+                <a class="list-group-item" href="{{url('game')}}">All Genre</a>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#genreModal" style="background-color:black;">
+                                            GENRE
+                                        </button>
+               <!-- <ul class="list-group">
+                <a class="list-group-item" href="{{url('game')}}">All Genre</a>
                       @foreach($genres as $genre)
                         <a class="list-group-item" href="{{url('game/'.$genre->genreId)}}">{{$genre->genreName}}</a>
                       @endforeach
-                    </div>
-                </div>
+                </ul>-->
             </div>
             <div class="col-lg-9">
                 <div class="carousel slide my-4" id="carouselExampleIndicators" data-ride="carousel">
@@ -78,28 +79,44 @@
                                     <form class="card-footer" action="{{url('/game/addtocart')}}" method="post">
                                       @csrf
                                       <input type="text" name="gameId" value="{{$game->GameID}}" hidden>
-                                      <select class="form-select" aria-label="Default select example" id="manufacturer" name="hari">
-                                        <option value="1">1 Day</option>
-                                        <option value="2">2 Days</option>
-                                        <option value="3">3 Days</option>
-                                        <option value="4">4 Days</option>
-                                        <option value="5">5 Days</option>
-                                        <option value="6">6 Days</option>
-                                        <option value="7">7 Days</option>
-                                      </select>
                                       <button type="submit" class="btn btn-primary">Rent</button>
                                     </form>
                                 </div>
                             </div>
-
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Genre Modal -->
+@foreach($games as $game)
 
-<!-- Modal -->
+<div class="modal fade" id="genreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Genre</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <ul class="list-group">
+                      @foreach($genres as $genre)
+                        <a class="list-group-item" href="{{url('game/'.$genre->genreId)}}">{{$genre->genreName}}</a>
+                      @endforeach
+                </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+@endforeach
+
+<!-- Game Modal -->
 @foreach($games as $game)
 
 <div class="modal fade" id="gameModal-{{$game->GameID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,7 +134,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                     </div>
                 </div>

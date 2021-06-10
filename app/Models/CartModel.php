@@ -295,4 +295,46 @@ class CartModel extends Model
   }
 
 
+  static function consoleTemp($email, $id){
+    $queryCheck = DB::table('tempcartconsole')
+                    ->where('email', $email)
+                    ->where('consoleId', $id)
+                    ->count();
+    if($queryCheck > 0) return redirect()->back()->withErrors(['errors' => 'You already ordered this item!']);
+    DB::beginTransaction();
+    $query = DB::table('tempcartconsole')
+               ->insert([
+                 'email' => $email,
+                 'consoleId' => $id
+               ]);
+    DB::commit();
+    if(!$query){
+      DB::rollback();
+      return redirect()->back()->withErrors(['errors' => 'Unknown error']);
+    }
+
+    return redirect('/cart');
+  }
+
+  static function gameTemp($email, $id){
+    $queryCheck = DB::table('tempcartgame')
+                    ->where('email', $email)
+                    ->where('idGame', $id)
+                    ->count();
+    if($queryCheck > 0) return redirect()->back()->withErrors(['errors' => 'You already ordered this item!']);
+    DB::beginTransaction();
+    $query = DB::table('tempcartgame')
+               ->insert([
+                 'email' => $email,
+                 'idGame' => $id
+               ]);
+    DB::commit();
+    if(!$query){
+      DB::rollback();
+      return redirect()->back()->withErrors(['errors' => 'Unknown error']);
+    }
+
+    return redirect('/cart');
+  }
+
 }

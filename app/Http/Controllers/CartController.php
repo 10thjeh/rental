@@ -30,4 +30,8 @@ class CartController extends Controller
       return CartModel::returnConsole($email, $id);
     }
 
+    function tempcart(){
+      return view('tempcart');
+    }
+
 }

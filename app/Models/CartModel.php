@@ -300,7 +300,13 @@ class CartModel extends Model
                     ->where('email', $email)
                     ->where('consoleId', $id)
                     ->count();
+    $queryCheckToo = DB::table('consoleorder')
+                       ->where('email', $email)
+                       ->where('consoleId', $id)
+                       ->where('status', '<>', 'Selesai')
+                       ->count();
     if($queryCheck > 0) return redirect()->back()->withErrors(['errors' => 'You already ordered this item!']);
+    if($queryCheckToo > 0) return redirect()->back()->withErrors(['errors' => 'You already ordered this item!']);
     DB::beginTransaction();
     $query = DB::table('tempcartconsole')
                ->insert([
@@ -321,7 +327,13 @@ class CartModel extends Model
                     ->where('email', $email)
                     ->where('idGame', $id)
                     ->count();
+    $queryCheckToo = DB::table('gameorder')
+                         ->where('email', $email)
+                         ->where('gameId', $id)
+                         ->where('status', '<>', 'Selesai')
+                         ->count();
     if($queryCheck > 0) return redirect()->back()->withErrors(['errors' => 'You already ordered this item!']);
+    if($queryCheckToo > 0) return redirect()->back()->withErrors(['errors' => 'You already ordered this item!']);
     DB::beginTransaction();
     $query = DB::table('tempcartgame')
                ->insert([
@@ -411,7 +423,7 @@ class CartModel extends Model
    $queryGame = DB::table('tempcartgame')->where('email', $email)->delete();
    $queryConsole = DB::table('tempcartconsole')->where('email', $email)->delete();
    DB::commit();
-   
+
    return redirect('/orderlist');
   }
 

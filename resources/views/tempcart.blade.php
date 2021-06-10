@@ -4,7 +4,7 @@
 <section>
 
   <!--Grid row-->
-  <div class="row" style="max-width:100%;">
+  <div class="row" style="max-width:100%;" id="foo">
     <p onload="updatePrice()"></p>
     <!--Grid column-->
     <div class="col-lg-8">

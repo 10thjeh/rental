@@ -5,7 +5,7 @@
 
   <!--Grid row-->
   <div class="row" style="max-width:100%;">
-
+    <p onload="updatePrice()"></p>
     <!--Grid column-->
     <div class="col-lg-8">
 
@@ -36,8 +36,6 @@
                   <div>
                     <h5>{{$console->NamaConsole}}</h5>
                     <p class="mb-3 text-muted text-uppercase small">{{$console->deskripsi}}</p>
-                    <p class="mb-3 text-muted text-uppercase small">Start date = {{$console->startDate}}</p>
-                    <p class="mb-3 text-muted text-uppercase small">End date = {{$console->endDate}}</p>
                   </div>
                   <!-- <div>
                     <div class="def-number-input number-input safari_only mb-0 w-100">
@@ -54,13 +52,9 @@
                         class="fas fa-trash-alt mr-1"></i> Remove item </a>
                   </div> -->
                   <p class="mb-0"><span><strong>Rp. {{$console->harga}}</strong></span></p>
-                  <p class="mb-0">Status : {{$console->status}}</p>
-                  
+
                 </div>
-                <a role="button" type="button" href="{{url('/cart/return/console/'.$console->orderId)}}" class="btn btn-primary btn-block waves-effect waves-light <?php if($console->status != "Sudah dikirim") echo "disabled"; ?>">Ready to Pickup</a>
-                <div class="col-md-12 text-center">
-                <button type="button" class="btn btn-danger">Delete</button>
-                </div>
+                <a role="button" type="button" href="{{url('/cart/deleteconsole/'.$console->consoleId)}}" class="btn btn-danger btn-block waves-effect waves-light">Delete</a>
               </div>
             </div>
           </div>
@@ -88,8 +82,6 @@
                   <div>
                     <h5>{{$game->NamaGame}}</h5>
                     <p class="mb-3 text-muted text-uppercase small">{{$game->deskripsi}}</p>
-                    <p class="mb-3 text-muted text-uppercase small">Start date = {{$game->startDate}}</p>
-                    <p class="mb-3 text-muted text-uppercase small">End date = {{$game->endDate}}</p>
                   </div>
                   <!-- <div>
                     <div class="def-number-input number-input safari_only mb-0 w-100">
@@ -106,12 +98,8 @@
                         class="fas fa-trash-alt mr-1"></i> Remove item </a>
                   </div> -->
                   <p class="mb-0"><span><strong>Rp. {{$game->harga}}</strong></span></p>
-                  <p class="mb-0">Status : {{$game->status}}</p>
                 </div>
-                <a role="button" type="button" href="{{url('/cart/return/game/'.$game->gameOrderId)}}" class="btn btn-primary btn-block waves-effect waves-light <?php if($game->status != "Sudah dikirim") echo "disabled"; ?>">Ready to Pickup</a>
-                <div class="col-md-12 text-center">
-                <button type="button" class="btn btn-danger">Delete</button>
-                </div>
+                <a role="button" type="button" href="{{url('/cart/deletegame/'.$game->idGame)}}" class="btn btn-danger btn-block waves-effect waves-light">Delete</a>
               </div>
             </div>
           </div>
@@ -138,68 +126,83 @@
         </div>
       </div>
       <!-- Card -->
-      <div class="card mb-3">
-        <div class="card-body">
+      <form class="" action="{{url('/cart')}}" method="post">
+        <div class="card mb-3">
+          <div class="card-body">
 
-          <h5 class="mb-3">Receipt</h5>
+            <h5 class="mb-3">Receipt</h5>
 
-          <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Choose Rent Time :
-              <select class="form-select" aria-label="Default select example" id="manufacturer" name="hari">
-                                        <option value="1">1 Day</option>
-                                        <option value="2">2 Days</option>
-                                        <option value="3">3 Days</option>
-                                        <option value="4">4 Days</option>
-                                        <option value="5">5 Days</option>
-                                        <option value="6">6 Days</option>
-                                        <option value="7">7 Days</option>
-                                      </select>
-            </li>
+            <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Order Date :
-              <span><?php
-          date_default_timezone_set('Asia/Jakarta');
-          echo date("l")." ".date("Y/m/d");
-          ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Order Time :
-              <span><?php
-          date_default_timezone_set('Asia/Jakarta');
-          echo date("h:i");
-          ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Temporary amount :
-              <span>Rp. XXX</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Shipping
-              <span>Free</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-              Status :
-                <strong>
-                <span>In Progress</span>
-              </strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-              <div>
-                <strong>The total amount of</strong>
-                <strong>
-                  <p class="mb-0">(including VAT)</p>
+                Choose Rent Time :
+                <input type="number" id="days" oninput="updatePrice()" name="days" value="" min="1" required>
+                <!-- <select class="form-select" aria-label="Default select example" id="days" oninput="updatePrice()" name="hari">
+                                          <option value="1" selected>1 Day</option>
+                                          <option value="2">2 Days</option>
+                                          <option value="3">3 Days</option>
+                                          <option value="4">4 Days</option>
+                                          <option value="5">5 Days</option>
+                                          <option value="6">6 Days</option>
+                                          <option value="7">7 Days</option>
+                                        </select> -->
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Order Date :
+                <span><?php
+            date_default_timezone_set('Asia/Jakarta');
+            echo date("l")." ".date("Y/m/d");
+            ?></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Order Time :
+                <span><?php
+            date_default_timezone_set('Asia/Jakarta');
+            echo date("h:i");
+            ?></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Temporary amount :
+                <span>Rp. <p id="price"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Shipping
+                <span>Free</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                Minimum rent time :
+                  <strong>
+                  <span>1 Day</span>
                 </strong>
-              </div>
-              <span><strong>Rp. XXX</strong></span>
-            </li>
-          </ul>
-
-          <button type="button" class="btn btn-primary btn-block waves-effect waves-light">Confirm Order</button>
-
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <div>
+                  <strong>The total amount of</strong>
+                  <strong>
+                    <p class="mb-0">(including VAT)</p>
+                  </strong>
+                </div>
+                <span><strong>Rp. <p id="priceToo">2</p> </strong></span>
+              </li>
+            </ul>
+            @csrf
+            <input type="submit" class="btn btn-primary btn-block waves-effect waves-light" name="" value="Confirm Order">
+          </div>
         </div>
-      </div>
+      </form>
+
     </divss>
   </div>
 </section>
+<script type="text/javascript">
+  const updatePrice = () => {
+    let totalPrice = {{$price}} || 0;
+    let days = document.getElementById('days').value || 1;
+    let finalPrice = totalPrice * days;
+    document.getElementById('priceToo').innerHTML = document.getElementById('price').innerHTML = isNaN(finalPrice)?"0":finalPrice;
+  };
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+      updatePrice();
+  });
+</script>
 @endsection

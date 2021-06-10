@@ -78,4 +78,7 @@ Route::post('/console/addtocart', [ConsoleController::class, 'addtocart']);
 Route::get('/orderlist', [CartController::class, 'getcart']);
 Route::get('/cart/return/game/{id}', [CartController::class, 'returngame']);
 Route::get('/cart/return/console/{id}', [CartController::class, 'returnconsole']);
-Route::get('/cart', [CartController::class, 'tempcart']);
+Route::get('/cart',                     [CartController::class, 'tempcart']);
+Route::get('/cart/deleteconsole/{id}', [CartController::class, 'deleteconsole']);
+Route::get('/cart/deletegame/{id}',   [CartController::class, 'deletegame']);
+Route::post('/cart', [CartController::class, 'checkout']);

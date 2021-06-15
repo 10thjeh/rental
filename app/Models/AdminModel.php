@@ -194,6 +194,10 @@ class AdminModel extends Model
 
     static function deleteConsole($id){
       DB::beginTransaction();
+      $tempQuery = DB::table('tempcartconsole')->where('consoleId', $id)->delete();
+      $consoleQuery = DB::table('consoleorder')->where('consoleId', $id)->delete();
+      AdminModel::removeGameWithConsoleID($id);
+      // AdminModel::deleteGame($id);
       $query = DB::table('console')->where('ConsoleID', $id)->delete();
       // dd($query);
       DB::commit();
@@ -209,6 +213,7 @@ class AdminModel extends Model
       DB::beginTransaction();
       $genreQuery = DB::table('genre')->where('idGame', $id)->delete();
       $gameQuery = DB::table('gameorder')->where('gameId', $id)->delete();
+      $tempQuery = DB::table('tempcartgame')->where('idGame', $id)->delete();
       $query = DB::table('game')->where('GameID', $id)->delete();
       DB::commit();
       if(!$query or !$genreQuery){
@@ -217,6 +222,13 @@ class AdminModel extends Model
       }
 
       return redirect()->route('games');
+    }
+
+    static function removeGameWithConsoleID($id){
+      $query = DB::table('game')->where('platform', $id)->get();
+      foreach ($query as $game) {
+        AdminModel::deleteGame($game->GameID);
+      }
     }
 
     static function addGenre($genreName){
